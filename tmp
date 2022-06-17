@@ -1,0 +1,43 @@
++ MAKEFILE_PATH=Makefile
++ SRC_DIR=philo
++ main
++ is_first=0
++ clean_source_makefile
+++ grep -nE '^SRC_C\s*:=' Makefile
++ begin_src='44:SRC_C			:= philo/philosophers.c'
++ begin_src=44
++ cursor=44
++ sed -i 44d Makefile
+++ grep -nE '^\s*.*[0-9a-zA-Z]\.c$' Makefile
++ end_src=
++ end_src=
++ sed -i 44,d Makefile
+sed: -e expression #1, char 4: unexpected `,'
++ insert_at_line 'SRC_C			:='
++ sed -i '44i SRC_C			:=' Makefile
++ let cursor=cursor+1
+++ find philo -type f -name '*.c'
+++ sort
++ for file in $(find ${SRC_DIR} -type f -name "*.c" | sort)
++ '[' 0 == 0 ']'
++ append_to_variable_src philo/parse.c
++ sed -i 's|SRC_C			:=|SRC_C			:= philo/parse.c \\|' Makefile
++ is_first=1
++ for file in $(find ${SRC_DIR} -type f -name "*.c" | sort)
++ '[' 1 == 0 ']'
++ insert_at_line_with_tab philo/philosophers.c
++ sed -i '45i philo/philosophers.c' Makefile
++ sed -i 's|^philo/philosophers.c|\t\t\t\t   philo/philosophers.c \\|' Makefile
++ let cursor=cursor+1
++ remove_last_backslash
++ let cursor=cursor-1
+++ sed -n 45p Makefile
++ last_src_line='				   philo/philosophers.c \'
+++ echo philo/philosophers.c '\'
+++ tr -d '\\'
+++ tr -d ' '
+++ tr -d '\t'
++ last_src_line=philo/philosophers.c
++ sed -i 45d Makefile
++ sed -i '45i philo/philosophers.c' Makefile
++ sed -i 's|^philo/philosophers.c|\t\t\t\t   philo/philosophers.c|' Makefile
