@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SRC_DIR="philo"
-INC_FILE=includes/philosophers.h
+INC_FILE="includes/philosophers.h"
 
 while [ "$1" != "" ]
 do
@@ -66,8 +66,12 @@ function get_current_tabulation()
 	else
 		current_line_nb_tab=$((${current_line_nb_tab} + 4 - ${remainder}))
 	fi
-	if [ ${current_line_nb_tab} -gt ${max_tab_num} ]; then
-		max_tab_num=${current_line_nb_tab}
+	if [ ${current_line_nb_tab} -ge ${max_tab_num} ]; then
+		if [ ${current_line_nb_tab} -eq ${max_tab_num} ]; then
+			max_tab_num=$((${current_line_nb_tab} + 4))
+		else
+			max_tab_num=${current_line_nb_tab}
+		fi
 	fi
 }
 

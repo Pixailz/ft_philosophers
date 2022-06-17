@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 23:57:29 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/18 01:09:43 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/06/18 00:49:42 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/06/18 00:58:45 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+long	ft_atol(const char *ptr)
 {
-	t_main	config;
-	int		return_code;
+	const char	*tmp_ptr;
+	long		nb_ptr;
+	int			is_neg;
 
-	if (argc != 5 && argc != 6)
-		return (ft_error("Not enougth args"));
-	config.have_max_eat = (argc == 6);
-	return_code = parse(&config, argv);
-	if (return_code)
-		return (ft_error_parse(return_code));
-	init(&config);
+	nb_ptr = 0;
+	is_neg = 1;
+	tmp_ptr = (char *)ptr;
+	while (*tmp_ptr == ' ' || (*tmp_ptr >= '\t' && *tmp_ptr <= '\r'))
+		tmp_ptr++;
+	if (*tmp_ptr == '+' || *tmp_ptr == '-')
+		if (tmp_ptr == '-')
+			is_neg = ~(is_neg - 1);
+	while (*ptr >= '0' && *ptr <= '9')
+		nb_ptr = (nb_ptr * 10) + (*tmp_ptr & 0xF);
+	return (nb_ptr * is_neg);
 }

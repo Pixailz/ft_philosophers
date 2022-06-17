@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/17 13:45:05 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/06/18 00:31:04 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,16 @@ SRC_DIR			:= philo
 OBJ_DIR			:= obj
 OBJ_SUBDIR		:= $(sort $(shell find $(SRC_DIR) -type d | \
 											sed 's|$(SRC_DIR)|$(OBJ_DIR)|g'))
-INC_TMP			:= -Iincludes
+INC_DIR			:= -Iincludes
 
 TARGET			:= $(addprefix $(BIN_DIR)/,$(TARGET))
 
 # SRC
-SRC_C			:= philo/parse.c \
-				   philo/philosophers.c
+SRC_C			:= philo/init.c \
+				   philo/parse.c \
+				   philo/philosophers.c \
+				   philo/utils/ft_atol.c \
+				   philo/utils/ft_error.c
 
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
