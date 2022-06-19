@@ -6,13 +6,13 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/18 00:31:04 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/06/19 22:56:51 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
-CFLAGS			:= -Wall -Wextra
+CFLAGS			:= -Wall -Wextra -pthread
 TARGET			:= philo
 RM				:= rm -rf
 CC				:= gcc
@@ -45,6 +45,7 @@ SRC_C			:= philo/debug/debug.c \
 				   philo/init.c \
 				   philo/parse.c \
 				   philo/philosophers.c \
+				   philo/time/time.c \
 				   philo/utils/ft_atol.c \
 				   philo/utils/ft_error.c \
 				   philo/utils/ft_isnum.c

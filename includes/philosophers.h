@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 17:59:16 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/19 23:15:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 /* ####### */
 
 # include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include <pthread.h>
 
 /* ########################################################################## */
 
@@ -56,6 +60,7 @@ typedef struct s_main
 
 // debug/debug.c
 void		debug_print_initial(t_main *config);
+void		print_elapsed(struct timeval *start, struct timeval *end);
 
 // init.c
 void		init(t_main *config);
@@ -67,7 +72,10 @@ int			parse_is_good_int(char *to_test);
 int			parse_is_numeric(t_main *config, char **argv);
 
 // philosophers.c
-int			main(int argc, char **argv);
+int			main(void);
+
+// time/time.c
+float		get_elapsed(struct timeval *start, struct timeval *end);
 
 // utils/ft_atol.c
 long		ft_atol(const char *ptr);
