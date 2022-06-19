@@ -41,11 +41,13 @@ INC_DIR			:= -Iincludes
 TARGET			:= $(addprefix $(BIN_DIR)/,$(TARGET))
 
 # SRC
-SRC_C			:= philo/init.c \
+SRC_C			:= philo/debug/debug.c \
+				   philo/init.c \
 				   philo/parse.c \
 				   philo/philosophers.c \
 				   philo/utils/ft_atol.c \
-				   philo/utils/ft_error.c
+				   philo/utils/ft_error.c \
+				   philo/utils/ft_isnum.c
 
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
