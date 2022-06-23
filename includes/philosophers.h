@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 23:15:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:13:14 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,27 @@
 
 typedef struct s_main
 {
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	have_max_eat;
-	int	number_of_times_each_philosophers_must_eat;
+	int				number_of_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				have_max_eat;
+	int				number_of_times_each_philosophers_must_eat;
+	struct timeval	begin;
+	struct s_philo	**philos;
 }				t_main;
+
+typedef enum e_state {
+	EATING,
+	THINKING,
+	SLEEPING
+}			t_state;
+
+typedef struct s_philo
+{
+	t_state	state;
+	int		number;
+}				t_philo;
 
 /* ########################################################################## */
 
@@ -60,7 +74,7 @@ typedef struct s_main
 
 // debug/debug.c
 void		debug_print_initial(t_main *config);
-void		print_elapsed(struct timeval *start, struct timeval *end);
+void		print_elapsed(struct timeval *start);
 
 // init.c
 void		init(t_main *config);
@@ -72,10 +86,10 @@ int			parse_is_good_int(char *to_test);
 int			parse_is_numeric(t_main *config, char **argv);
 
 // philosophers.c
-int			main(void);
+int			main(int argc, char **argv);
 
 // time/time.c
-float		get_elapsed(struct timeval *start, struct timeval *end);
+float		get_elapsed(struct timeval *start);
 
 // utils/ft_atol.c
 long		ft_atol(const char *ptr);

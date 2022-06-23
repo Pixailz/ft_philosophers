@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/20 15:19:15 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/06/20 15:17:19 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init(t_main *config)
+void	free_philo(t_main *config)
 {
 	int	counter;
 
 	counter = 0;
-	gettimeofday(&config->begin, NULL);
-	config->philos = (t_philo **)malloc(sizeof(t_philo *) * \
-												config->number_of_philosophers);
 	while (counter < config->number_of_philosophers)
-	{
-		config->philos[counter]->number = counter + 1;
-		config->philos[counter++]->state = -1;
-	}
+		free(config->philos[counter++]);
+	free(config->philos);
+}
+
+void	free_entry(t_main *config)
+{
+	free_philo(config)
 }

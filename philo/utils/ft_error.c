@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:40:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 17:51:40 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:37:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	ft_error_parse(int return_code)
 
 int	ft_error(char *msg)
 {
-	printf("Error\n%s", msg);
+	printf("Error\n%s\n", msg);
 	return (1);
 }

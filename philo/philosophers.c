@@ -6,12 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:57:29 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 23:23:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:21:17 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*int	main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
 	t_main	config;
 	int		return_code;
@@ -23,12 +24,12 @@
 	if (return_code)
 		return (ft_error_parse(return_code));
 	init(&config);
+	free_entry(&config);
 }
- */
 
+/*
 # include <time.h>
-
-void	*roll_dice(void *test)
+//void	*roll_dice(void *test)
 {
 	int	value;
 	int	*result;
@@ -40,7 +41,7 @@ void	*roll_dice(void *test)
 	return ((void *)(result));
 }
 
-int	main(void)
+//int	main(void)
 {
 	pthread_t	t1;
 	int			*result;
@@ -51,4 +52,5 @@ int	main(void)
 	if (pthread_join(t1, (void **)&result))
 		return (1);
 	printf("result: %d\n", *result);
-}
+} */
+
