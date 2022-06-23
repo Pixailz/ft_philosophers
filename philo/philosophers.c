@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:57:29 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/20 15:21:17 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:55:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ int	main(int argc, char **argv)
 		return (1);
 	printf("result: %d\n", *result);
 } */
-

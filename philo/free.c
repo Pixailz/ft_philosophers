@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/20 15:17:19 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:24:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	free_philo(t_main *config)
 
 void	free_entry(t_main *config)
 {
-	free_philo(config)
+	free_philo(config);
 }

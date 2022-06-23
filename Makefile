@@ -42,6 +42,7 @@ TARGET			:= $(addprefix $(BIN_DIR)/,$(TARGET))
 
 # SRC
 SRC_C			:= philo/debug/debug.c \
+				   philo/free.c \
 				   philo/init.c \
 				   philo/parse.c \
 				   philo/philosophers.c \

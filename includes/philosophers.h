@@ -76,6 +76,10 @@ typedef struct s_philo
 void		debug_print_initial(t_main *config);
 void		print_elapsed(struct timeval *start);
 
+// free.c
+void		free_entry(t_main *config);
+void		free_philo(t_main *config);
+
 // init.c
 void		init(t_main *config);
 

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/20 15:19:15 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:34:28 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	init(t_main *config)
 												config->number_of_philosophers);
 	while (counter < config->number_of_philosophers)
 	{
+		config->philos[counter] = (t_philo *)malloc(sizeof(t_philo));
 		config->philos[counter]->number = counter + 1;
-		config->philos[counter++]->state = -1;
+		config->philos[counter++]->state = THINKING;
 	}
 }
