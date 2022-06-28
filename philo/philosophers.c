@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   pilosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:57:29 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/23 20:55:59 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:56:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (ft_error("Wrong number of args"));
 	config.have_max_eat = argc == 6;
-	return_code = parse(&config, argv);
+	return_code = ft_parse(&config, argv);
 	if (return_code)
 		return (ft_error_parse(return_code));
-	init(&config);
+	ft_init(&config);
 	free_entry(&config);
 }
 
