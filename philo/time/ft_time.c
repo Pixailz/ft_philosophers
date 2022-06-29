@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_actions.c                                 :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 20:05:26 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/28 20:08:49 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/06/19 22:02:54 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/06/29 10:58:33 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_print_actions(t_main *config, int philo_id, char *action)
+long long	ft_get_timestamp(void)
 {
-	printf("%lld %d %s\n", ft_get_timestamp - config->timestamp, \
-					philo_id, action);
+	struct timeval	timestamp;
+
+	gettimeofday(&timestamp, NULL);
+	return (timestamp.tv_sec * 1000 + (timestamp.tv_usec / 1000));
 }

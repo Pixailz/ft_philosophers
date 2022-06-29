@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 13:43:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/28 20:12:10 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/29 05:27:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_parse_is_arg_too_big(t_main *config, char **argv)
 	{
 		if (ft_parse_is_good_int(argv[5]))
 			return (10);
-		config->number_of_times_each_philosophers_must_eat = ft_atol(argv[5]);
+		config->max_eat = ft_atol(argv[5]);
 	}
 	return (0);
 }

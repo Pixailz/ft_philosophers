@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 22:02:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/28 20:02:25 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/06/19 17:34:14 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/06/19 17:37:02 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long long	ft_get_timestamp(void)
+int	ft_isnum(const char *ptr)
 {
-	struct timeval	timestamp;
+	char	*tmp;
 
-	gettimeofday(&timestamp, NULL);
-	return (timestamp.tv_sec * 1000 + (timestamp.tv_usec / 1000));
+	tmp = (char *)ptr;
+	if (*tmp == '-' || *tmp == '+')
+		tmp++;
+	while (*tmp)
+		if (*tmp < '0' || *tmp++ > '9')
+			return (0);
+	return (1);
 }

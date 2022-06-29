@@ -6,62 +6,42 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/29 12:46:11 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/06/29 10:41:01 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
-CFLAGS			:= -Wall -Wextra -pthread
+CFLAGS			:= -Wall -Wextra -Werror -pthread
 TARGET			:= philo
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
-VERSION			:= 1.4.0
+VERSION			:= 0.0.0
 $(eval export MAIN=1)
 
-ifneq ($(PADDING),30)
+ifneq ($(PADDING),35)
 PADDING			:= 35
 endif
 
-ifeq ($(DEBUG),)
-CFLAGS			+= -Werror
-else
-CFLAGS			+= -g3
-endif
-
-ifneq ($(DEBUG_THREAD),)
-CFLAGS			+= -g3 -fsanitize=thread
-endif
-
-# DIR
-BIN_DIR			:= bin
-SRC_DIR			:= philo
-OBJ_DIR			:= obj
-OBJ_SUBDIR		:= $(sort $(shell find $(SRC_DIR) -type d | \
-											sed 's|$(SRC_DIR)|$(OBJ_DIR)|g'))
-INC_DIR			:= -Iincludes
-
-TARGET			:= $(addprefix $(BIN_DIR)/,$(TARGET))
-
 # SRC
-SRC_C			:= philo/dataset/ft_free.c \
-				   philo/dataset/ft_init.c \
-				   philo/dataset/ft_parse.c \
-				   philo/debug/ft_debug.c \
-				   philo/life/ft_death.c \
-				   philo/life/ft_eat.c \
-				   philo/life/ft_sleep.c \
-				   philo/life/ft_solo.c \
-				   philo/life/ft_world.c \
-				   philo/philosophers.c \
-				   philo/time/ft_time.c \
-				   philo/utils/ft_atol.c \
-				   philo/utils/ft_error.c \
-				   philo/utils/ft_isnum.c
+SRC_C			:= free.c \
+				   init.c \
+				   parse.c \
+				   debug.c \
+				   death.c \
+				   eat.c \
+				   sleep.c \
+				   solo.c \
+				   world.c \
+				   philosophers.c \
+				   time.c \
+				   ft_atol.c \
+				   ft_error.c \
+				   ft_isnum.c
 
 # OBJ
-OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
+OBJ_C			:= $(SRC_C:%.c=%.o)
 
 # LIB DIR
 CFLAGS			+= $(INC_DIR)
@@ -132,12 +112,6 @@ $(font_color)Version: $(bold)$(VERSION)$(reset)
 endef
 export usage
 
-define make_dir
-	@if [ ! -d $1 ]; then														\
-		mkdir $1;																\
-		printf "$(green_plus) $(font_color)Create dir $(bold)$1$(reset)\n";		\
-	fi
-endef
 # **************************************************************************** #
 
 # **************************************************************************** #
@@ -146,7 +120,7 @@ endef
 all:			setup $(TARGET)
 	@printf "$$usage"
 
-$(OBJ_DIR)/%.o: 		$(SRC_DIR)/%.c
+%.o: 		%.c
 	$(call print_padded,$^,$@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
@@ -154,17 +128,10 @@ $(TARGET):				$(OBJ_C)
 	@printf "$(green_plus) $(font_color)Creation of $(bold)$@$(reset)\n"
 	@$(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS)
 
-setup:					call_logo $(OBJ_SUBDIR) $(BIN_DIR)
+setup:					call_logo
 
 call_logo:
 	@printf "$(ascii_color)$$ascii_art"
-
-$(OBJ_SUBDIR):
-	$(foreach dir,$@,$(call make_dir,$(dir)))
-
-$(BIN_DIR):
-	@printf "$(green_plus) $(font_color)Create dir $(bold)$(BIN_DIR)$(reset)\n"
-	@mkdir -p $(BIN_DIR)
 
 clean:
 	@printf "$(red_minus) $(font_color)Deleting $(bold)$(OBJ_DIR)$(reset)\n"

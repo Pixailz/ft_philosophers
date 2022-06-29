@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/23 20:24:06 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/06/18 00:49:42 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/06/19 17:31:46 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	free_philo(t_main *config)
+long	ft_atol(const char *ptr)
 {
-	int	counter;
+	const char	*tmp_ptr;
+	long		nb_ptr;
+	int			is_neg;
 
-	counter = 0;
-	while (counter < config->number_of_philosophers)
-		free(config->philos[counter++]);
-	free(config->philos);
-}
-
-void	free_entry(t_main *config)
-{
-	free_philo(config);
+	nb_ptr = 0;
+	is_neg = 1;
+	tmp_ptr = (char *)ptr;
+	while (*tmp_ptr == ' ' || (*tmp_ptr >= '\t' && *tmp_ptr <= '\r'))
+		tmp_ptr++;
+	if (*tmp_ptr == '+' || *tmp_ptr == '-')
+		if (*tmp_ptr++ == '-')
+			is_neg = ~(is_neg - 1);
+	while (*tmp_ptr >= '0' && *tmp_ptr <= '9')
+		nb_ptr = (nb_ptr * 10) + (*tmp_ptr++ & 0xF);
+	return (nb_ptr * is_neg);
 }
