@@ -50,7 +50,8 @@ SRC_C			:= philo/debug/debug.c \
 				   philo/time/time.c \
 				   philo/utils/ft_atol.c \
 				   philo/utils/ft_error.c \
-				   philo/utils/ft_isnum.c
+				   philo/utils/ft_isnum.c \
+				   philo/utils/ft_print_actions.c
 
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))

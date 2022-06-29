@@ -6,11 +6,18 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:40:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/20 14:37:13 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/29 02:49:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_error_init(int return_code)
+{
+	printf("Error\n");
+	if (return_code == 1)
+		printf("malloc\n");
+}
 
 int	ft_error_parse(int return_code)
 {

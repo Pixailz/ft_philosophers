@@ -23,7 +23,9 @@ int	main(int argc, char **argv)
 	return_code = ft_parse(&config, argv);
 	if (return_code)
 		return (ft_error_parse(return_code));
-	ft_init(&config);
+	return_code = ft_init(&config);
+	if (return_code)
+		return (ft_error_init(return_code));
 	free_entry(&config);
 }
 
