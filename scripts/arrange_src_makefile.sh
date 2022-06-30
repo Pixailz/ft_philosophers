@@ -1,7 +1,15 @@
 #!/bin/bash
 
 MAKEFILE_PATH="Makefile"
-SRC_DIR="philo"
+VARIABLE_SRC="SRC_TMP"
+
+if [ $1 == "1" ]; then
+	SRC_DIR="philo"
+elif [ $1 == "2" ]; then
+	SRC_DIR="philo_bonus"
+else
+	printf "wrong arg (1|2)\n"
+fi
 
 function insert_at_line()
 {
@@ -12,26 +20,26 @@ function insert_at_line()
 function insert_at_line_with_tab()
 {
 	sed -i "${cursor}i ${file}" ${MAKEFILE_PATH}
-	sed -i "s|^${file}|\t\t\t\t   ${file} \\\\|" ${MAKEFILE_PATH}
+	sed -i "s|^${file}|\t\t\t\t\t   ${file#*\/} \\\\|" ${MAKEFILE_PATH}
 	let "cursor=cursor+1"
 }
 
 function append_to_variable_src()
 {
-	sed -i "s|SRC_C			:=|SRC_C			:= ${1} \\\\|" ${MAKEFILE_PATH}
+	sed -i "s|${VARIABLE_SRC}				:=|${VARIABLE_SRC}				:= ${1#*\/} \\\\|" ${MAKEFILE_PATH}
 	is_first=1
 }
 
 function clean_source_makefile()
 {
-	begin_src=$(grep -nE "^SRC_C\s*:=" ${MAKEFILE_PATH})
+	begin_src=$(grep -nE "^${VARIABLE_SRC}\s*:=" ${MAKEFILE_PATH})
 	begin_src=${begin_src/:*/}
 	cursor=${begin_src}
-	sed -i "${cursor}d" ${MAKEFILE_PATH}
+	#sed -i "${cursor}d" ${MAKEFILE_PATH}
 	end_src=$(grep -nE '^\s*.*[0-9a-zA-Z]\.c$' ${MAKEFILE_PATH})
 	end_src=${end_src/:*/}
 	sed -i "${begin_src},${end_src}d" ${MAKEFILE_PATH}
-	insert_at_line "SRC_C			:="
+	insert_at_line "${VARIABLE_SRC}				:="
 }
 
 function remove_last_backslash()
@@ -41,7 +49,7 @@ function remove_last_backslash()
 	last_src_line=$(echo ${last_src_line} | tr -d '\\' | tr -d ' ' | tr -d '\t')
 	sed -i "${cursor}d" ${MAKEFILE_PATH}
 	sed -i "${cursor}i ${last_src_line}" ${MAKEFILE_PATH}
-	sed -i "s|^${last_src_line}|\t\t\t\t   ${last_src_line}|" ${MAKEFILE_PATH}
+	sed -i "s|^${last_src_line}|\t\t\t\t\t   ${last_src_line}|" ${MAKEFILE_PATH}
 }
 
 function remove_last_backslash_one()
@@ -49,10 +57,10 @@ function remove_last_backslash_one()
 	let "cursor=cursor-1"
 	last_src_line=$(sed -n "${cursor}p" ${MAKEFILE_PATH})
 	last_src_line=$(echo ${last_src_line} | tr -d '\\' | tr -d ' ' | tr -d '\t')
-	last_src_line=$(echo ${last_src_line} | sed 's|SRC_C:=||')
+	last_src_line=$(echo ${last_src_line} | sed "s|${VARIABLE_SRC}:=||")
 	sed -i "${cursor}d" ${MAKEFILE_PATH}
 	sed -i "${cursor}i ${last_src_line}" ${MAKEFILE_PATH}
-	sed -i "s|^${last_src_line}|SRC_C\t\t\t:= ${last_src_line}|" ${MAKEFILE_PATH}
+	sed -i "s|^${last_src_line}|${VARIABLE_SRC}\t\t\t:= ${last_src_line}|" ${MAKEFILE_PATH}
 }
 
 function main()
