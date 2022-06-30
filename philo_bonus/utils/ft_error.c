@@ -6,19 +6,19 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 00:40:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 06:42:24 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/30 04:47:19 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	ft_error_life(int return_code)
 {
 	printf("Error\n");
 	if (return_code == 1)
-		printf("failed to create thread\n");
+		printf("failed to fork process\n");
 	if (return_code == 2)
-		printf("failed to join thread\n");
+		printf("failed to wait process\n");
 	return (return_code);
 }
 
@@ -28,7 +28,7 @@ int	ft_error_init(int return_code)
 	if (return_code == 1)
 		printf("malloc\n");
 	if (return_code == 2)
-		printf("init mutex\n");
+		printf("init semaphore\n");
 	return (return_code);
 }
 

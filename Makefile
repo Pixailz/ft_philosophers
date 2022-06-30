@@ -6,25 +6,23 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/30 03:00:02 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/06/30 06:02:00 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
 
+VERSION				:= 1.4.2
 ifeq ($(findstring bonus,$(MAKECMDGOALS)),bonus)
 BONUS				:= 1
-VERSION				:= 1.4.0
 TARGET				:= philo_bonus
 else
 ifeq ($(findstring re_bonus,$(MAKECMDGOALS)),re_bonus)
 BONUS				:= 1
-VERSION				:= 1.4.0
 TARGET				:= philo_bonus
 else
 BONUS				:= 0
-VERSION				:= 1.4.0
 TARGET				:= philo
 endif
 endif
@@ -63,26 +61,23 @@ INC_DIR				:= -Iincludes
 TARGET				:= $(addprefix $(BIN_DIR)/,$(TARGET))
 
 # SRC
+ifeq ($(BONUS),1)
 SRC_TMP				:= dataset/ft_free.c \
 					   dataset/ft_init.c \
 					   dataset/ft_parse.c \
 					   debug/ft_debug.c \
+					   life/ft_death.c \
+					   life/ft_eat.c \
+					   life/ft_sleep.c \
+					   life/ft_solo.c \
+					   life/ft_wait.c \
+					   life/ft_world.c \
 					   philosophers.c \
 					   time/ft_time.c \
 					   utils/ft_atol.c \
 					   utils/ft_error.c \
 					   utils/ft_isnum.c
-
-ifeq ($(BONUS),1)
-SRC_C				:= dataset/ft_free.c \
-					   dataset/ft_init.c \
-					   dataset/ft_parse.c \
-					   debug/ft_debug.c \
-					   philosophers.c \
-					   time/ft_time.c \
-					   utils/ft_atol.c \
-					   utils/ft_error.c \
-					   utils/ft_isnum.c
+SRC_C				:= $(SRC_TMP)
 else
 SRC_C				:= dataset/ft_free.c \
 					   dataset/ft_init.c \

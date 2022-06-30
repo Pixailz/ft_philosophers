@@ -1,14 +1,16 @@
 #!/bin/bash
 
 MAKEFILE_PATH="Makefile"
-VARIABLE_SRC="SRC_TMP"
 
-if [ $1 == "1" ]; then
+if [ "$1" == "1" ]; then
 	SRC_DIR="philo"
-elif [ $1 == "2" ]; then
+	VARIABLE_SRC="SRC_C"
+elif [ "$1" == "2" ]; then
 	SRC_DIR="philo_bonus"
+	VARIABLE_SRC="SRC_TMP"
 else
 	printf "wrong arg (1|2)\n"
+	exit
 fi
 
 function insert_at_line()

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -26,6 +26,12 @@ int	main(int argc, char **argv)
 	return_code = ft_init(&config);
 	if (return_code)
 		return (ft_error_init(return_code));
+	if (config.number_of_philosophers == 1)
+		return_code = ft_solo_life_manager(&config);
+	else
+		return_code = ft_life_manager(&config);
+	if (return_code)
+		return (ft_error_life(return_code));
 	ft_free_entry(&config);
 	return (0);
 }

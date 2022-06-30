@@ -1,17 +1,15 @@
 #!/bin/bash
 
-SRC_DIR="philo"
-INC_FILE="includes/philosophers.h"
-
-while [ "$1" != "" ]
-do
-	case $1 in
-		-R)
-			REPLACE=1
-			;;
-	esac
-	shift
-done
+if [ "$1" == "1" ]; then
+	SRC_DIR="philo"
+	INC_FILE="includes/philosophers.h"
+elif [ "$1" == "2" ]; then
+	SRC_DIR="philo_bonus"
+	INC_FILE="includes/philosophers_bonus.h"
+else
+	printf "wrong arg (1|2)\n"
+	exit
+fi
 
 function insert_at_line()
 {

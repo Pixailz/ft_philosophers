@@ -6,11 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:34:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 17:37:02 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/30 03:48:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	ft_isnum(const char *ptr)
 {

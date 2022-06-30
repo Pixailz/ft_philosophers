@@ -6,11 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:54:52 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 11:25:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/30 03:48:45 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 void	ft_debug_print_initial(t_main *config)
 {

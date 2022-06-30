@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 21:36:58 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/30 06:45:17 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <semaphore.h>
 
 /* ########################################################################## */
 
@@ -45,41 +47,47 @@
 
 typedef struct s_main
 {
-	int				number_of_philosophers;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				have_max_eat;
-	int				max_eat;
-	int				philo_died;
-	int				philo_died_id;
-	int				philo_all_ate;
-	long long		start_timestamp;
-	pthread_t		death;
-	pthread_mutex_t	**forks;
-	struct s_philo	**philos;
-	struct s_mutexs	*mutexs;
+	int					number_of_philosophers;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					have_max_eat;
+	int					max_eat;
+	int					philo_died;
+	int					philo_died_id;
+	int					philo_all_ate;
+	long long			start_timestamp;
+	sem_t				**forks;
+	struct s_philo		**philos;
+	struct s_semaphores	*semaphores;
+	struct s_waiter		**waiters;
 }					t_main;
 
-typedef struct s_mutexs
+typedef struct s_waiter
 {
-	pthread_mutex_t	print_action_mutex;
-	pthread_mutex_t	last_meal_mutex;
-	pthread_mutex_t	nb_eat_mutex;
-	pthread_mutex_t	died_all_ate_mutex;
-	pthread_mutex_t	all_ate_mutex;
-}					t_mutexs;
+	int			id;
+	t_main		*config;
+	pthread_t	thread_id;
+}				t_waiter;
+
+typedef struct s_semaphores
+{
+	sem_t	print_action_semaphore;
+	sem_t	last_meal_semaphore;
+	sem_t	nb_eat_semaphore;
+	sem_t	died_all_ate_semaphore;
+	sem_t	all_ate_semaphore;
+	sem_t	waiter_status_semaphore;
+}			t_semaphores;
 
 typedef struct s_philo
 {
-	pthread_t	thread_id;
+	pid_t		pid_id;
 	t_main		*config;
 	long long	last_meal;
 	int			have_reached_max_eat;
 	int			nb_eat;
 	int			philo_id;
-	int			l_fork_id;
-	int			r_fork_id;
 }				t_philo;
 
 /* ########################################################################## */
@@ -89,16 +97,18 @@ typedef struct s_philo
 /* ##### */
 
 // dataset/ft_free.c
-void			ft_destroy_mutex(t_main *config);
+void			ft_destroy_semaphore(t_main *config);
 void			ft_free_entry(t_main *config);
 void			ft_free_forks(t_main *config);
 void			ft_free_philos(t_main *config);
+void			ft_free_waiters(t_main *config);
 
 // dataset/ft_init.c
 int				ft_init(t_main *config);
 int				ft_init_forks(t_main *config);
-int				ft_init_mutex(t_main *config);
 int				ft_init_philos(t_main *config);
+int				ft_init_semaphore(t_main *config);
+int				ft_init_waiters(t_main *config);
 
 // dataset/ft_parse.c
 int				ft_parse(t_main *config, char **argv);
@@ -113,24 +123,26 @@ void			ft_debug_print_initial(t_main *config);
 // life/ft_death.c
 void			ft_check_all_ate(int *nb_eat, t_main *config, int counter);
 void			ft_check_last_meal(t_main *config, int counter);
-void			*ft_death(void *void_config);
-void			ft_death_2(t_main *config, int nb_eat);
+void			ft_death(t_main *config);
 
 // life/ft_eat.c
 void			ft_eat(t_philo *philo);
 
 // life/ft_sleep.c
-void			ft_sleep_ng(t_philo *philo, long long begin, \
-														long long time_to_wait);
+void			ft_sleep_ng(t_philo *philo, long long begin, long long time_to_wait);
 
 // life/ft_solo.c
 int				ft_solo_life_manager(t_main *config);
-void			*ft_solo_live(void *void_philo);
+void			ft_solo_live(t_philo *philo);
+
+// life/ft_wait.c
+void			ft_wait_for_all_process(t_main *config);
+void			*ft_wait_for_one_process(void *void_counter);
 
 // life/ft_world.c
 void			ft_cycle_of_life(t_philo *philo);
 int				ft_life_manager(t_main *config);
-void			*ft_live(void *void_philo);
+void			ft_live(t_philo *philo);
 void			ft_say(t_main *config, int philo_id, char *action);
 
 // philosophers.c
