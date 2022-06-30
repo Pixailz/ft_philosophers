@@ -10,3 +10,6 @@ philo_one/*.c
 
 # vscode config
 .vscode
+
+# when sigflt/crash
+vgcore.*
