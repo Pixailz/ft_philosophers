@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/30 02:18:46 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/06/30 03:00:02 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,15 @@ BONUS				:= 1
 VERSION				:= 1.4.0
 TARGET				:= philo_bonus
 else
+ifeq ($(findstring re_bonus,$(MAKECMDGOALS)),re_bonus)
+BONUS				:= 1
+VERSION				:= 1.4.0
+TARGET				:= philo_bonus
+else
 BONUS				:= 0
 VERSION				:= 1.4.0
 TARGET				:= philo
+endif
 endif
 CFLAGS				:= -Wall -Wextra -pthread
 RM					:= rm -rf
@@ -57,6 +63,15 @@ INC_DIR				:= -Iincludes
 TARGET				:= $(addprefix $(BIN_DIR)/,$(TARGET))
 
 # SRC
+SRC_TMP				:= dataset/ft_free.c \
+					   dataset/ft_init.c \
+					   dataset/ft_parse.c \
+					   debug/ft_debug.c \
+					   philosophers.c \
+					   time/ft_time.c \
+					   utils/ft_atol.c \
+					   utils/ft_error.c \
+					   utils/ft_isnum.c
 
 ifeq ($(BONUS),1)
 SRC_C				:= dataset/ft_free.c \
@@ -184,11 +199,11 @@ $(OBJ_DIR)/%.o: 		$(SRC_DIR)/%.c
 	$(call print_padded,$^,$@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
-setup:					call_logo $(OBJ_SUBDIR)
-ifeq ($(wildcard $(BIN_DIR)),)
+$(BIN_DIR):
 	@printf "$(green_plus) $(font_color)Create dir $(bold)$(BIN_DIR)$(reset)\n"
 	@mkdir $(BIN_DIR)
-endif
+
+setup:					call_logo $(OBJ_SUBDIR) $(BIN_DIR)
 
 call_logo:
 	@printf "$(ascii_color)$$ascii_art"
@@ -221,6 +236,8 @@ ifneq ($(wildcard $(BIN_DIR)),)
 endif
 
 re:						fclean all
+
+re_bonus:				fclean bonus
 
 .PHONY:					all clean fclean re setup call_logo bonus
 
