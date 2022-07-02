@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/02 19:25:49 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:10:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
 
 /* ########################################################################## */
 
@@ -65,12 +66,13 @@ typedef struct s_main
 
 typedef struct s_semaphores
 {
-	sem_t	print_action_semaphore;
-	sem_t	last_meal_semaphore;
-	sem_t	nb_eat_semaphore;
-	sem_t	died_all_ate_semaphore;
-	sem_t	all_ate_semaphore;
-	sem_t	wait_finish_semaphore;
+	sem_t	print_action_sem;
+	sem_t	last_meal_sem;
+	sem_t	nb_eat_sem;
+	sem_t	died_all_ate_sem;
+	sem_t	all_ate_sem;
+	sem_t	wait_for_all;
+
 }			t_semaphores;
 
 typedef struct s_philo
@@ -90,65 +92,66 @@ typedef struct s_philo
 /* ##### */
 
 // dataset/ft_free.c
-void		ft_destroy_semaphore(t_main *config);
-void		ft_free_entry(t_main *config);
-void		ft_free_forks(t_main *config);
-void		ft_free_philos(t_main *config);
+void			ft_destroy_semaphore(t_main *config);
+void			ft_free_entry(t_main *config);
+void			ft_free_forks(t_main *config);
+void			ft_free_philos(t_main *config);
 
 // dataset/ft_init.c
-int			ft_init(t_main *config);
-int			ft_init_forks(t_main *config);
-int			ft_init_philos(t_main *config);
-int			ft_init_semaphore(t_main *config);
+int				ft_init(t_main *config);
+int				ft_init_forks(t_main *config);
+int				ft_init_philos(t_main *config);
+int				ft_init_semaphore(t_main *config);
 
 // dataset/ft_parse.c
-int			ft_parse(t_main *config, char **argv);
-int			ft_parse_is_arg_too_big(t_main *config, char **argv);
-int			ft_parse_is_good_int(char *to_test);
-int			ft_parse_is_numeric(t_main *config, char **argv);
+int				ft_parse(t_main *config, char **argv);
+int				ft_parse_is_arg_too_big(t_main *config, char **argv);
+int				ft_parse_is_good_int(char *to_test);
+int				ft_parse_is_numeric(t_main *config, char **argv);
 
 // debug/ft_debug.c
-void		ft_debug_print_elapsed(long long elapsed);
-void		ft_debug_print_initial(t_main *config);
+void			ft_debug_print_elapsed(long long elapsed);
+void			ft_debug_print_initial(t_main *config);
 
 // life/ft_death.c
-void		ft_check_all_ate(int *nb_eat, t_main *config, int counter);
-void		ft_check_last_meal(t_main *config, int counter);
-void		ft_death(t_main *config);
+void			ft_check_all_ate(int *nb_eat, t_main *config, int counter);
+void			ft_check_last_meal(t_main *config, int counter);
+void			ft_death(t_main *config);
+void			ft_kill_all_child(t_main *config);
 
 // life/ft_eat.c
-void		ft_eat(t_philo *philo);
+void			ft_eat(t_philo *philo);
 
 // life/ft_sleep.c
-void		ft_sleep_ng(t_philo *philo, long long begin, \
+void			ft_sleep_ng(t_philo *philo, long long begin, \
 														long long time_to_wait);
 
 // life/ft_solo.c
-int			ft_solo_life_manager(t_main *config);
-void		ft_solo_live(t_philo *philo);
+int				ft_solo_life_manager(t_main *config);
+void			ft_solo_live(t_philo *philo);
 
 // life/ft_world.c
-void		ft_cycle_of_life(t_philo *philo);
-int			ft_life_manager(t_main *config);
-void		ft_live(t_philo *philo);
-void		ft_say(t_main *config, int philo_id, char *action);
+void			ft_cycle_of_life(t_philo *philo);
+int				ft_life_manager(t_main *config);
+pid_t			ft_live(t_philo *philo);
+void			ft_say(t_main *config, int philo_id, char *action);
 
 // philosophers.c
-int			main(int argc, char **argv);
+int				main(int argc, char **argv);
 
 // time/ft_time.c
-long long	ft_get_timestamp(void);
+long long		ft_get_timestamp(void);
 
 // utils/ft_atol.c
-long		ft_atol(const char *ptr);
+long			ft_atol(const char *ptr);
 
 // utils/ft_error.c
-int			ft_error_init(int return_code);
-int			ft_error_life(int return_code);
-int			ft_error_parse(int return_code);
+int				ft_error_init(int return_code);
+int				ft_error_life(int return_code);
+int				ft_error_parse(int return_code);
 
 // utils/ft_isnum.c
-int			ft_isnum(const char *ptr);
+int				ft_isnum(const char *ptr);
 
 /* ########################################################################## */
 

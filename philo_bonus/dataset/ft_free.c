@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/02 19:23:15 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:37:27 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	ft_free_forks(t_main *config)
 
 void	ft_destroy_semaphore(t_main *config)
 {
-	sem_close(&config->semaphores->print_action_semaphore);
-	sem_close(&config->semaphores->last_meal_semaphore);
-	sem_close(&config->semaphores->nb_eat_semaphore);
-	sem_close(&config->semaphores->died_all_ate_semaphore);
-	sem_close(&config->semaphores->all_ate_semaphore);
-	sem_close(&config->semaphores->wait_finish_semaphore);
+	sem_close(&config->semaphores->print_action_sem);
+	sem_close(&config->semaphores->last_meal_sem);
+	sem_close(&config->semaphores->nb_eat_sem);
+	sem_close(&config->semaphores->died_all_ate_sem);
+	sem_close(&config->semaphores->all_ate_sem);
+	sem_close(&config->semaphores->wait_for_all);
 	free(config->semaphores);
 }
 

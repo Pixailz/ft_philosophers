@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/02 19:24:18 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:37:30 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int	ft_init_semaphore(t_main *config)
 	config->semaphores = (t_semaphores *)malloc(sizeof(t_semaphores));
 	if (!config->semaphores)
 		return (1);
-	if (sem_init(&config->semaphores->print_action_semaphore, 1, 1))
+	if (sem_init(&config->semaphores->print_action_sem, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->last_meal_semaphore, 1, 1))
+	if (sem_init(&config->semaphores->last_meal_sem, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->nb_eat_semaphore, 1, 1))
+	if (sem_init(&config->semaphores->nb_eat_sem, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->died_all_ate_semaphore, 1, 1))
+	if (sem_init(&config->semaphores->died_all_ate_sem, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->all_ate_semaphore, 1, 1))
+	if (sem_init(&config->semaphores->all_ate_sem, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->wait_finish_semaphore, 1, \
+	if (sem_init(&config->semaphores->wait_for_all, 1, \
 											config->number_of_philosophers + 1))
 		return (2);
 	return (0);
@@ -57,7 +57,6 @@ int	ft_init_forks(t_main *config)
 int	ft_init_philos(t_main *config)
 {
 	int	counter;
-	int	*ptr;
 
 	config->philos = (t_philo **)malloc(sizeof(t_philo *) * \
 												config->number_of_philosophers);
