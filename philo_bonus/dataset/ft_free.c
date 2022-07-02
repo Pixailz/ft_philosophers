@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/30 06:31:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:23:15 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,8 @@ void	ft_destroy_semaphore(t_main *config)
 	sem_close(&config->semaphores->nb_eat_semaphore);
 	sem_close(&config->semaphores->died_all_ate_semaphore);
 	sem_close(&config->semaphores->all_ate_semaphore);
+	sem_close(&config->semaphores->wait_finish_semaphore);
 	free(config->semaphores);
-}
-
-void	ft_free_waiters(t_main *config)
-{
-	int	counter;
-
-	counter = 0;
-	while (counter < config->number_of_philosophers)
-		free(config->waiters[counter++]);
-	free(config->waiters);
 }
 
 void	ft_free_entry(t_main *config)
@@ -57,5 +48,4 @@ void	ft_free_entry(t_main *config)
 	ft_free_philos(config);
 	ft_free_forks(config);
 	ft_destroy_semaphore(config);
-	ft_free_waiters(config);
 }

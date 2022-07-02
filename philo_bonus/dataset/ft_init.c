@@ -6,32 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/30 06:44:17 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:24:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
-int	ft_init_waiters(t_main *config)
-{
-	int	counter;
-
-	config->waiters = (t_waiter **)malloc(sizeof(t_waiter *) * \
-												config->number_of_philosophers);
-	if (!config->waiters)
-		return (1);
-	counter = 0;
-	while (counter < config->number_of_philosophers)
-	{
-		config->waiters[counter] = (t_waiter *)malloc(sizeof(t_waiter));
-		if (!config->waiters[counter])
-			return (1);
-		config->waiters[counter]->id = counter;
-		config->waiters[counter]->config = config;
-		counter++;
-	}
-	return (0);
-}
 
 int	ft_init_semaphore(t_main *config)
 {
@@ -48,8 +27,8 @@ int	ft_init_semaphore(t_main *config)
 		return (2);
 	if (sem_init(&config->semaphores->all_ate_semaphore, 1, 1))
 		return (2);
-	if (sem_init(&config->semaphores->waiter_status_semaphore, 1, \
-												config->number_of_philosophers))
+	if (sem_init(&config->semaphores->wait_finish_semaphore, 1, \
+											config->number_of_philosophers + 1))
 		return (2);
 	return (0);
 }
@@ -78,6 +57,7 @@ int	ft_init_forks(t_main *config)
 int	ft_init_philos(t_main *config)
 {
 	int	counter;
+	int	*ptr;
 
 	config->philos = (t_philo **)malloc(sizeof(t_philo *) * \
 												config->number_of_philosophers);
@@ -110,9 +90,6 @@ int	ft_init(t_main *config)
 	if (return_code)
 		return (return_code);
 	return_code = ft_init_semaphore(config);
-	if (return_code)
-		return (return_code);
-	return_code = ft_init_waiters(config);
 	if (return_code)
 		return (return_code);
 	return (0);

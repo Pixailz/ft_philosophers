@@ -70,7 +70,6 @@ SRC_TMP				:= dataset/ft_free.c \
 					   life/ft_eat.c \
 					   life/ft_sleep.c \
 					   life/ft_solo.c \
-					   life/ft_wait.c \
 					   life/ft_world.c \
 					   philosophers.c \
 					   time/ft_time.c \

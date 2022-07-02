@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 19:48:59 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/30 06:40:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:08:45 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ int	ft_life_manager(t_main *config)
 		counter++;
 	}
 	ft_death(config);
-	ft_wait_for_all_process(config);
+	sem_wait(&config->semaphores->wait_finish_semaphore);
 	return (0);
 }
