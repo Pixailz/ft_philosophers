@@ -6,14 +6,14 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/07/03 03:27:52 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/07/03 03:26:09 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
 CFLAGS			:= -Wall -Wextra -Werror -I. -pthread
-TARGET			:= philo
+TARGET			:= philo_bonus
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
