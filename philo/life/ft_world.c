@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 19:48:59 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 14:59:03 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:13:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_cycle_of_life(t_philo *philo)
 		if (philo->have_reached_max_eat)
 		{
 			pthread_mutex_unlock(&philo->config->mutexs->all_ate_mutex);
+			pthread_mutex_lock(&philo->config->mutexs->died_all_ate_mutex);
 			break ;
 		}
 		pthread_mutex_unlock(&philo->config->mutexs->all_ate_mutex);
