@@ -1,6 +1,8 @@
 # object
 obj/
 obj_bonus/
+philo_one/*.o
+philo_three/*.o
 
 # executable
 bin/
