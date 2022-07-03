@@ -5,9 +5,6 @@ obj_bonus/
 # executable
 bin/
 
-# src for tester
-philo_one/*.c
-
 # vscode config
 .vscode
 
