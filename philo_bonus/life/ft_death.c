@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 04:50:13 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 03:16:28 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:40:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_death(void *void_philo)
 	t_philo		*philo;
 
 	philo = (t_philo *)void_philo;
-	while (1)
+	while (VRAI)
 	{
 		sem_wait(philo->config->check_meal);
 		if (ft_get_timestamp() - philo->last_meal >= philo->config->time_to_die)
