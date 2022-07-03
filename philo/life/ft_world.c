@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 19:48:59 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 12:40:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:59:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	ft_cycle_of_life(t_philo *philo)
 	{
 		pthread_mutex_unlock(&philo->config->mutexs->died_all_ate_mutex);
 		ft_eat(philo);
+		pthread_mutex_lock(&philo->config->mutexs->died_all_ate_mutex);
 		if (philo->config->philo_died || philo->config->philo_all_ate)
 		{
-			pthread_mutex_lock(&philo->config->mutexs->died_all_ate_mutex);
 			break ;
 		}
+		pthread_mutex_unlock(&philo->config->mutexs->died_all_ate_mutex);
 		ft_say(philo->config, philo->philo_id, "is sleeping");
 		ft_sleep_ng(philo, ft_get_timestamp(), philo->config->time_to_sleep);
 		ft_say(philo->config, philo->philo_id, "is thinking");
