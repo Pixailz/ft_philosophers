@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 04:50:13 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 12:19:32 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:13:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ void	*ft_death(void *void_config)
 
 void	ft_death_2(t_main *config, int nb_eat)
 {
+	pthread_mutex_lock(&config->mutexs->died_all_ate_mutex);
 	if (nb_eat == config->number_of_philosophers)
 	{
 		config->philo_all_ate = 1;
 	}
+	pthread_mutex_unlock(&config->mutexs->died_all_ate_mutex);
 	usleep(CHECK_TIME);
 }
