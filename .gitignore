@@ -6,6 +6,9 @@ philo_three/*.o
 
 # executable
 bin/
+**/philo
+**/philo_bonus
+
 
 # vscode config
 .vscode
