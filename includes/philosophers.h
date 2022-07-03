@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 12:41:55 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 11:56:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /* ###### */
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 # define INT_MAX 2147483647
