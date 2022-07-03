@@ -6,14 +6,14 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/06/30 06:02:00 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/07/03 03:21:09 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
 
-VERSION				:= 1.4.2
+VERSION				:= 1.4.5
 ifeq ($(findstring bonus,$(MAKECMDGOALS)),bonus)
 BONUS				:= 1
 TARGET				:= philo_bonus

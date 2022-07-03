@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/02 19:37:27 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:01:49 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,18 @@ void	ft_free_philos(t_main *config)
 	free(config->philos);
 }
 
-void	ft_free_forks(t_main *config)
-{
-	int	counter;
-
-	counter = 0;
-	while (counter < config->number_of_philosophers)
-		free(config->forks[counter++]);
-	free(config->forks);
-}
-
 void	ft_destroy_semaphore(t_main *config)
 {
-	sem_close(&config->semaphores->print_action_sem);
-	sem_close(&config->semaphores->last_meal_sem);
-	sem_close(&config->semaphores->nb_eat_sem);
-	sem_close(&config->semaphores->died_all_ate_sem);
-	sem_close(&config->semaphores->all_ate_sem);
-	sem_close(&config->semaphores->wait_for_all);
-	free(config->semaphores);
+	sem_close(config->check_meal);
+	sem_close(config->writing);
+	sem_close(config->forks);
+	sem_unlink("/check_meal");
+	sem_unlink("/philo_writing");
+	sem_unlink("/philo_forks");
 }
 
 void	ft_free_entry(t_main *config)
 {
 	ft_free_philos(config);
-	ft_free_forks(config);
 	ft_destroy_semaphore(config);
 }
