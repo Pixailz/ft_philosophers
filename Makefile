@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/07/03 03:21:09 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/07/03 15:01:43 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ else
 CFLAGS				+= -g3
 endif
 
-ifneq ($(DEBUG_THREAD),)
+ifeq ($(DEBUG_THREAD),1)
 CFLAGS				+= -g3 -fsanitize=thread
 endif
 
@@ -198,6 +198,15 @@ $(BIN_DIR):
 	@mkdir $(BIN_DIR)
 
 setup:					call_logo $(OBJ_SUBDIR) $(BIN_DIR)
+	@printf "$(orange_star) $(font_color)Info$(reset)\n"
+	@printf "   $(orange_star) $(bold)Switch$(reset)\n"
+	@printf "      $(orange_star) $(font_color)DEBUG $(bold)%d$(reset)\n" $(DEBUG)
+	@printf "      $(orange_star) $(font_color)DEBUG_THREAD $(bold)%d$(reset)\n" $(DEBUG_THREAD)
+	@printf "   $(orange_star) $(bold)SRC_C$(reset)\n"
+	@printf "      $(orange_star) $(font_color)%s$(reset)\n" $(SRC_C)
+	@printf "   $(orange_star) $(bold)OBJ_C$(reset)\n"
+	@printf "      $(orange_star) $(font_color)%s$(reset)\n" $(OBJ_C)
+	@printf "$(orange_star) $(font_color)Building$(reset)\n"
 
 call_logo:
 	@printf "$(ascii_color)$$ascii_art"
