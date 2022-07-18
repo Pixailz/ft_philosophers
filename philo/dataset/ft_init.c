@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/29 11:51:52 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:21:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	ft_init_philos(t_main *config)
 			return (1);
 		config->philos[counter]->have_reached_max_eat = 0;
 		config->philos[counter]->philo_id = counter + 1;
+		config->philos[counter]->nb_eat = 0;
 		config->philos[counter]->l_fork_id = counter;
 		config->philos[counter]->r_fork_id = (counter + 1) % \
 												config->number_of_philosophers;

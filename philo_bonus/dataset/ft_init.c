@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:09:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 03:04:22 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:21:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 int	ft_init_semaphore(t_main *config)
 {
 	sem_unlink("/philo_check_meal");
+	sem_unlink("/philo_check_all_ate");
 	sem_unlink("/philo_writing");
 	sem_unlink("/philo_forks");
 	config->check_meal = sem_open("/philo_check_meal", O_CREAT, S_IRWXU, 1);
+	config->check_all_ate = sem_open("/philo_check_all_ate", \
+														O_CREAT, S_IRWXU, 1);
 	config->writing = sem_open("/philo_writing", O_CREAT, S_IRWXU, 1);
 	config->forks = sem_open("/philo_forks", O_CREAT, S_IRWXU, \
 												config->number_of_philosophers);

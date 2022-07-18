@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:56:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 14:40:09 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:02:56 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_main
 	sem_t				*forks;
 	sem_t				*writing;
 	sem_t				*check_meal;
+	sem_t				*check_all_ate;
 }					t_main;
 
 typedef struct s_philo

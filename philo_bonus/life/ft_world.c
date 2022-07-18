@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 19:48:59 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 03:13:51 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:37:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	ft_life_manager(t_main *config)
 			ft_live(config->philos[counter]);
 		counter++;
 	}
-	ft_waiter(config);
+	if (counter == config->number_of_philosophers)
+		ft_waiter(config);
 	return (0);
 }
