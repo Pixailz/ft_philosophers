@@ -6,14 +6,14 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/07/03 03:27:52 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/07/30 18:24:15 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
 CFLAGS			:= -Wall -Wextra -Werror -I. -pthread
-TARGET			:= philo
+TARGET			:= philo_bonus
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
@@ -25,20 +25,20 @@ PADDING			:= 35
 endif
 
 # SRC
-SRC_C			:= ft_free.c \
-				   ft_init.c \
-				   ft_parse.c \
-				   ft_debug.c \
-				   ft_death.c \
-				   ft_eat.c \
-				   ft_sleep.c \
-				   ft_solo.c \
-				   ft_world.c \
-				   ft_philosophers.c \
-				   ft_time.c \
-				   ft_atol.c \
-				   ft_error.c \
-				   ft_isnum.c
+SRC_C				:= dataset/ft_free.c \
+					   dataset/ft_init.c \
+					   dataset/ft_parse.c \
+					   debug/ft_debug.c \
+					   life/ft_death.c \
+					   life/ft_eat.c \
+					   life/ft_sleep.c \
+					   life/ft_solo.c \
+					   life/ft_world.c \
+					   philosophers.c \
+					   time/ft_time.c \
+					   utils/ft_atol.c \
+					   utils/ft_error.c \
+					   utils/ft_isnum.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)
