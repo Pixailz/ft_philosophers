@@ -32,7 +32,8 @@ SRC_C				:= dataset/init.c \
 					   utils/ft_atol.c \
 					   utils/ft_error.c \
 					   utils/ft_isnum.c \
-					   utils/ft_strlen.c
+					   utils/ft_strlen.c \
+					   world/solitary_life_manager.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)

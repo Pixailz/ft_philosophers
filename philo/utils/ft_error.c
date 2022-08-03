@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/02 23:18:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/03 07:12:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int	ft_error_parse(int ret_code)
 
 int	ft_error_init(int return_code)
 {
+	printf("Error: ");
+	if (return_code == 1)
+		printf("(malloc philos)\n");
 	return (return_code);
 }
 

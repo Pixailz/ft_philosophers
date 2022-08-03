@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/02 22:53:14 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/03 07:05:16 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,22 @@
 
 typedef struct s_main
 {
-	int	have_max_eat;
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_eat;
+	int				have_max_eat;
+	int				number_of_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				max_eat;
+	struct s_philo	**philos;
 }				t_main;
+
+typedef struct s_philo
+{
+	int		philo_id;
+	t_main	*config;
+	int		l_fork_id;
+	int		r_fork_id;
+}				t_philo;
 
 /* ########################################################################## */
 
@@ -62,6 +71,7 @@ typedef struct s_main
 // dataset/init.c
 void		init_config(t_main *config, char **argv);
 int			init_entry(t_main *config, char **argv);
+int			init_philos(t_main *config);
 
 // dataset/parse.c
 int			parse(t_main *config, char **argv);
@@ -88,6 +98,9 @@ int			ft_isnumeric(const char *str);
 
 // utils/ft_strlen.c
 int			ft_strlen(const char *str);
+
+// world/solitary_life_manager.c
+int			solo_life_manager(t_main *config);
 
 /* ########################################################################## */
 

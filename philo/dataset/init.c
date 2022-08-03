@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:43:20 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/02 22:52:35 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/03 07:11:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,37 @@ void	init_config(t_main *config, char **argv)
 		debug_print_initial_config(config);
 }
 
+int	init_philos(t_main *config)
+{
+	int	counter;
+
+	config->philos = (t_philo **)malloc(sizeof(t_philo *) * \
+												config->number_of_philosophers);
+	if (!config->philos)
+		return (1);
+	counter = 0;
+	while (counter < config->number_of_philosophers)
+	{
+		config->philos[counter] = (t_philo *)malloc(sizeof(t_philo));
+		if (!config->philos[counter])
+			return (1);
+		config->philos[counter]->philo_id = counter + 1;
+		config->philos[counter]->l_fork_id = counter;
+		config->philos[counter]->r_fork_id = (counter + 1) % \
+												config->number_of_philosophers;
+		config->philos[counter]->config = config;
+		counter++;
+	}
+	return (0);
+}
+
 int	init_entry(t_main *config, char **argv)
 {
+	int	return_code;
+
 	init_config(config, argv);
+	return_code = init_philos(config);
+	if (return_code)
+		return(return_code);
 	return (0);
 }
