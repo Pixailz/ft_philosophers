@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/03 07:12:50 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 00:25:11 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_error_parse(int ret_code)
+int	error_parse(int ret_code)
 {
 	printf("Error: ");
 	if (ret_code == 1 || ret_code == 6 || ret_code == 11 || ret_code == 16)
@@ -36,11 +36,18 @@ int	ft_error_parse(int ret_code)
 	return (ret_code);
 }
 
-int	ft_error_init(int return_code)
+int	error_init(int return_code)
 {
 	printf("Error: ");
 	if (return_code == 1)
 		printf("(malloc philos)\n");
+	return (return_code);
+}
+
+int	error_life(int return_code)
+{
+	if (return_code == 1)
+		printf("Error: (create thread)");
 	return (return_code);
 }
 

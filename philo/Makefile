@@ -6,13 +6,13 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/02 23:21:37 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/07 00:27:42 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
-CFLAGS			:= -Wall -Wextra -Werror -I. -pthread
+CFLAGS			:= -Wall -Wextra -Werror -I. -pthread -g3
 TARGET			:= philo
 RM				:= rm -rf
 CC				:= gcc
@@ -31,6 +31,7 @@ SRC_C				:= dataset/init.c \
 					   philosophers.c \
 					   utils/ft_atol.c \
 					   utils/ft_error.c \
+					   utils/ft_get_timestamp_ms.c \
 					   utils/ft_isnum.c \
 					   utils/ft_strlen.c \
 					   world/solitary_life_manager.c

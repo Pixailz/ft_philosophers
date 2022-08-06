@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/03 07:05:16 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 00:22:01 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 /* STRUCT */
 /* ###### */
 
+typedef long long	t_stamp;
+
 typedef struct s_main
 {
 	int				have_max_eat;
@@ -51,15 +53,18 @@ typedef struct s_main
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_eat;
+	t_stamp			start_ts;
 	struct s_philo	**philos;
-}				t_main;
+}					t_main;
 
 typedef struct s_philo
 {
-	int		philo_id;
-	t_main	*config;
-	int		l_fork_id;
-	int		r_fork_id;
+	int			philo_id;
+	pthread_t	thread_id;
+	t_main		*config;
+	int			l_fork_id;
+	int			r_fork_id;
+	t_stamp		last_meal;
 }				t_philo;
 
 /* ########################################################################## */
@@ -89,9 +94,13 @@ int			main(int argc, char **argv);
 long int	ft_atol(const char *str);
 
 // utils/ft_error.c
+int			error_init(int return_code);
+int			error_life(int return_code);
+int			error_parse(int ret_code);
 int			ft_error(char *msg);
-int			ft_error_init(int return_code);
-int			ft_error_parse(int ret_code);
+
+// utils/ft_get_timestamp_ms.c
+t_stamp		ft_get_timestamp_ms(void);
 
 // utils/ft_isnum.c
 int			ft_isnumeric(const char *str);
@@ -100,6 +109,7 @@ int			ft_isnumeric(const char *str);
 int			ft_strlen(const char *str);
 
 // world/solitary_life_manager.c
+void		*solo_life(void *void_philo);
 int			solo_life_manager(t_main *config);
 
 /* ########################################################################## */

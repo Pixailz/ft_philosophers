@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solitary_life_manager.c                            :+:      :+:    :+:   */
+/*   ft_get_timestamp_ms.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/03 06:30:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 00:29:35 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/04 20:00:33 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/04 20:02:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*solo_life(void *void_philo)
+t_stamp	ft_get_timestamp_ms(void)
 {
-	return ((void *) void_philo);
-}
+	struct timeval	timestamp;
 
-int	solo_life_manager(t_main *config)
-{
-	t_stamp	begin;
-
-	begin = ft_get_timestamp_ms();
-	config->start_ts = begin;
-	config->philos[0]->last_meal = begin;
-	if (pthread_create(&config->philos[0]->thread_id, NULL, \
-												solo_life, config->philos[0]))
-		return (1);
-	if (pthread_join(config->philos[0]->thread_id, NULL))
-		return (2);
-	return (0);
+	gettimeofday(&timestamp, NULL);
+	return (timestamp.tv_sec * 1000 + (timestamp.tv_usec / 1000));
 }
