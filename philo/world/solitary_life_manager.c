@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:30:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 04:59:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 17:00:11 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	*solo_life(void *void_philo)
 	t_philo	*philo;
 
 	philo = (t_philo *)void_philo;
-	pthread_mutex_lock(philo->config->forks[])
+	pthread_mutex_lock(philo->config->forks[philo->l_fork_id]);
+	pthread_mutex_unlock(philo->config->forks[philo->l_fork_id]);
 	return ((void *) void_philo);
 }
 
