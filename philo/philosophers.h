@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 00:22:01 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 04:59:56 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_main
 	int				max_eat;
 	t_stamp			start_ts;
 	struct s_philo	**philos;
+	pthread_mutex_t	**forks;
 }					t_main;
 
 typedef struct s_philo
