@@ -6,19 +6,25 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/07 00:27:42 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/07 17:00:24 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
-CFLAGS			:= -Wall -Wextra -Werror -I. -pthread -g3
+CFLAGS			:= -Wall -Wextra -I. -pthread
 TARGET			:= philo
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
 VERSION			:= 0.0.0
 $(eval export MAIN=1)
+
+ifneq ($(DEBUG),1)
+CFLAGS			+= -Werror
+else
+CFLAGS			+= -g3
+endif
 
 ifneq ($(PADDING),35)
 PADDING			:= 35
