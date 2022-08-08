@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/07 17:00:24 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/08 00:36:00 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ $(eval export MAIN=1)
 ifneq ($(DEBUG),1)
 CFLAGS			+= -Werror
 else
-CFLAGS			+= -g3
+CFLAGS			+= -g3 -fsanitize=thread
 endif
 
 ifneq ($(PADDING),35)
@@ -31,7 +31,8 @@ PADDING			:= 35
 endif
 
 # SRC
-SRC_C				:= dataset/init.c \
+SRC_C				:= dataset/free.c \
+					   dataset/init.c \
 					   dataset/parse.c \
 					   debug/debug.c \
 					   philosophers.c \
@@ -40,7 +41,13 @@ SRC_C				:= dataset/init.c \
 					   utils/ft_get_timestamp_ms.c \
 					   utils/ft_isnum.c \
 					   utils/ft_strlen.c \
-					   world/solitary_life_manager.c
+					   world/death.c \
+					   world/eat.c \
+					   world/life_manager.c \
+					   world/say.c \
+					   world/sleep_ng.c \
+					   world/solitary_life_manager.c \
+					   world/utils.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)

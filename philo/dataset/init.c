@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:43:20 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 16:51:12 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/08 01:06:46 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_config(t_main *config, char **argv)
 		config->max_eat = ft_atol(argv[5]);
 	if (DEBUG)
 		debug_print_initial_config(config);
+	config->all_ate = 0;
+	config->have_died = 0;
 }
 
 int	init_philos(t_main *config)
@@ -43,6 +45,8 @@ int	init_philos(t_main *config)
 		config->philos[counter]->r_fork_id = (counter + 1) % \
 												config->number_of_philosophers;
 		config->philos[counter]->config = config;
+		config->philos[counter]->nb_eat = 0;
+		config->philos[counter]->have_max_eaten = 0;
 		counter++;
 	}
 	return (0);
@@ -70,6 +74,21 @@ int	init_forks(t_main *config)
 	return (0);
 }
 
+int	init_mutex(t_main *config)
+{
+	if (pthread_mutex_init(&config->m_speak, NULL))
+		return (6);
+	if (pthread_mutex_init(&config->m_have_died, NULL))
+		return (7);
+	if (pthread_mutex_init(&config->m_all_ate, NULL))
+		return (8);
+	if (pthread_mutex_init(&config->m_last_meal, NULL))
+		return (9);
+	if (pthread_mutex_init(&config->m_nb_eat, NULL))
+		return (10);
+	return (0);
+}
+
 int	init_entry(t_main *config, char **argv)
 {
 	int	return_code;
@@ -79,6 +98,9 @@ int	init_entry(t_main *config, char **argv)
 	if (return_code)
 		return (return_code);
 	return_code = init_forks(config);
+	if (return_code)
+		return (return_code);
+	return_code = init_mutex(config);
 	if (return_code)
 		return (return_code);
 	return (0);

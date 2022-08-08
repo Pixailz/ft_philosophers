@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:42:25 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/02 22:54:34 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:20:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,25 @@ void	debug_print_initial_config(t_main *config)
 	if (config->have_max_eat)
 		printf("    max_eat.....................................%d\n", \
 															config->max_eat);
+}
+
+void	debug_print_elapsed(t_stamp current_ts)
+{
+	long long	sec;
+	long long	usec;
+
+	sec = current_ts / 1000;
+	usec = current_ts % 1000;
+	if (sec)
+	{
+		printf("%lld.", sec);
+		if (usec < 10)
+			printf("00%lld", usec);
+		else if (usec < 100)
+			printf("0%lld", usec);
+		else
+			printf("%lld", usec);
+	}
+	else
+		printf("%lld", usec);
 }

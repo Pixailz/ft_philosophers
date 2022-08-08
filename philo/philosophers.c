@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:13:03 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 00:25:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/07 23:59:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	main(int argc, char **argv)
 		return (error_init(return_code));
 	if (config.number_of_philosophers == 1)
 		return_code = solo_life_manager(&config);
-	// else
-	// 	return_code = life_manager(&config);
+	else
+		return_code = life_manager(&config);
 	if (return_code)
 		return (error_life(return_code));
+	free_entry(&config);
 	return (0);
 }

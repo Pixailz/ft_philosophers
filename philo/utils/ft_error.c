@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 16:50:01 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/08 01:07:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ int	error_parse(int ret_code)
 	return (ret_code);
 }
 
+int	error_init2(int return_code)
+{
+	if (return_code == 11)
+		printf("m_nb_eat\n");
+	return (return_code);
+}
+
 int	error_init(int return_code)
 {
 	printf("Error: ");
 	if (return_code >= 1 && return_code <= 4)
 		printf("malloc");
-	else if (return_code == 5)
+	else if (return_code >= 5)
 		printf("init mutex");
 	if (return_code == 1)
 		printf("(**philos)\n");
@@ -51,13 +58,23 @@ int	error_init(int return_code)
 		printf("(**forks)\n");
 	if (return_code == 4 || return_code == 5)
 		printf("(*fork)\n");
-	return (return_code);
+	if (return_code == 6)
+		printf("(m_speak)\n");
+	if (return_code == 7)
+		printf("(m_have_died)\n");
+	if (return_code == 8)
+		printf("(m_last_meal)\n");
+	if (return_code == 10)
+		printf("(m_nb_eat)\n");
+	return (error_init2(return_code));
 }
 
 int	error_life(int return_code)
 {
 	if (return_code == 1)
 		printf("Error: (create thread)");
+	if (return_code == 2)
+		printf("Error: (joining thread)");
 	return (return_code);
 }
 
