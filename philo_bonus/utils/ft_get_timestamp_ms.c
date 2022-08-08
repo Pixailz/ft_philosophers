@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time.c                                          :+:      :+:    :+:   */
+/*   ft_get_timestamp_ms.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 22:02:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/30 03:48:45 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/04 20:00:33 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/04 20:02:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philosophers.h"
 
-long long	ft_get_timestamp(void)
+t_stamp	ft_get_timestamp_ms(void)
 {
 	struct timeval	timestamp;
 

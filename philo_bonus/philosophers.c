@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pilosophers.c                                     :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 23:57:29 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/28 19:56:03 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/02 18:13:03 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/07 23:59:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philosophers.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,20 +18,20 @@ int	main(int argc, char **argv)
 	int		return_code;
 
 	if (argc != 5 && argc != 6)
-		return (printf("Error\nWrong number of args\n"));
+		return (printf("Error: Not enought args\n"));
 	config.have_max_eat = argc == 6;
-	return_code = ft_parse(&config, argv);
+	return_code = parse(&config, argv);
 	if (return_code)
-		return (ft_error_parse(return_code));
-	return_code = ft_init(&config);
+		return (error_parse(return_code));
+	return_code = init_entry(&config, argv);
 	if (return_code)
-		return (ft_error_init(return_code));
+		return (error_init(return_code));
 	if (config.number_of_philosophers == 1)
-		return_code = ft_solo_life_manager(&config);
+		return_code = solo_life_manager(&config);
 	else
-		return_code = ft_life_manager(&config);
+		return_code = life_manager(&config);
 	if (return_code)
-		return (ft_error_life(return_code));
-	ft_free_entry(&config);
+		return (error_life(return_code));
+	free_entry(&config);
 	return (0);
 }

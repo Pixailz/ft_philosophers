@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sleep.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 05:55:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/03 03:06:46 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/02 23:14:08 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/02 23:15:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philosophers.h"
 
-void	ft_sleep_ng(t_philo *philo, long long begin, long long time_to_wait)
+int	ft_strlen(const char *str)
 {
-	long long	current_time;
+	char	*ptr_str;
 
-	while (!philo->config->philo_died && !philo->config->philo_all_ate)
-	{
-		current_time = ft_get_timestamp();
-		if (current_time - begin >= time_to_wait)
-		{
-			break ;
-		}
-		usleep(50);
-	}
+	ptr_str = (char *)str;
+	while (*ptr_str)
+		ptr_str++;
+	return (ptr_str - str);
 }

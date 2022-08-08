@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_debug.c                                         :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 17:54:52 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/30 03:48:45 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/02 22:42:25 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/07 20:20:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philosophers.h"
 
-void	ft_debug_print_initial(t_main *config)
+void	debug_print_initial_config(t_main *config)
 {
 	printf("INITIAL CONFIG\n");
 	printf("    number_of_philosophers......................%d\n", \
@@ -24,16 +24,17 @@ void	ft_debug_print_initial(t_main *config)
 	printf("    time_to_sleep...............................%d\n", \
 												config->time_to_sleep);
 	if (config->have_max_eat)
-		printf("    max_eat..%d\n", config->max_eat);
+		printf("    max_eat.....................................%d\n", \
+															config->max_eat);
 }
 
-void	ft_debug_print_elapsed(long long elapsed)
+void	debug_print_elapsed(t_stamp current_ts)
 {
 	long long	sec;
 	long long	usec;
 
-	sec = elapsed / 1000;
-	usec = elapsed % 1000;
+	sec = current_ts / 1000;
+	usec = current_ts % 1000;
 	if (sec)
 	{
 		printf("%lld.", sec);

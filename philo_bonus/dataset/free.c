@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 15:13:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/07/04 14:03:13 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/07 21:44:30 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/08 01:07:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philosophers.h"
 
-void	ft_free_philos(t_main *config)
+void	free_philos(t_main *config)
 {
 	int	counter;
 
@@ -22,20 +22,26 @@ void	ft_free_philos(t_main *config)
 	free(config->philos);
 }
 
-void	ft_destroy_semaphore(t_main *config)
+void	free_forks(t_main *config)
 {
-	sem_close(config->check_meal);
-	sem_close(config->check_all_ate);
-	sem_close(config->writing);
-	sem_close(config->forks);
-	sem_unlink("/check_meal");
-	sem_unlink("/check_all_ate");
-	sem_unlink("/philo_writing");
-	sem_unlink("/philo_forks");
+	int	counter;
+
+	counter = 0;
+	while (counter < config->number_of_philosophers)
+		free(config->forks[counter++]);
+	free(config->forks);
 }
 
-void	ft_free_entry(t_main *config)
+void	destroy_mutex(t_main *config)
 {
-	ft_free_philos(config);
-	ft_destroy_semaphore(config);
+	pthread_mutex_destroy(&config->m_speak);
+	pthread_mutex_destroy(&config->m_have_died);
+	pthread_mutex_destroy(&config->m_all_ate);
+}
+
+void	free_entry(t_main *config)
+{
+	free_philos(config);
+	free_forks(config);
+	destroy_mutex(config);
 }

@@ -6,13 +6,13 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/07/30 18:24:15 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/08 19:34:56 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
-CFLAGS			:= -Wall -Wextra -Werror -I. -pthread
+CFLAGS			:= -Wall -Wextra -I. -pthread
 TARGET			:= philo_bonus
 RM				:= rm -rf
 CC				:= gcc
@@ -20,25 +20,34 @@ MAKE			:= make -C
 VERSION			:= 0.0.0
 $(eval export MAIN=1)
 
+ifneq ($(DEBUG),1)
+CFLAGS			+= -Werror
+else
+CFLAGS			+= -g3 -fsanitize=thread
+endif
+
 ifneq ($(PADDING),35)
 PADDING			:= 35
 endif
 
 # SRC
-SRC_C				:= dataset/ft_free.c \
-					   dataset/ft_init.c \
-					   dataset/ft_parse.c \
-					   debug/ft_debug.c \
-					   life/ft_death.c \
-					   life/ft_eat.c \
-					   life/ft_sleep.c \
-					   life/ft_solo.c \
-					   life/ft_world.c \
+SRC_C				:= dataset/free.c \
+					   dataset/init.c \
+					   dataset/parse.c \
+					   debug/debug.c \
 					   philosophers.c \
-					   time/ft_time.c \
 					   utils/ft_atol.c \
 					   utils/ft_error.c \
-					   utils/ft_isnum.c
+					   utils/ft_get_timestamp_ms.c \
+					   utils/ft_isnum.c \
+					   utils/ft_strlen.c \
+					   world/death.c \
+					   world/eat.c \
+					   world/life_manager.c \
+					   world/say.c \
+					   world/sleep_ng.c \
+					   world/solitary_life_manager.c \
+					   world/utils.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)
@@ -132,6 +141,7 @@ call_logo:
 
 clean:
 	@printf "$(red_minus) $(font_color)Deleting $(bold)obj$(reset)\n"
+	@$(RM) **/*.o
 	@$(RM) *.o
 
 fclean:					clean

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 18:24:48 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 16:56:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/08 01:19:51 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/08 19:19:05 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_isnumeric(const char *str)
+void	ft_lock_both(t_main *config)
 {
-	char	*ptr_str;
+	pthread_mutex_lock(&config->m_have_died);
+	if (config->have_max_eat)
+		pthread_mutex_lock(&config->m_all_ate);
+}
 
-	ptr_str = (char *)str;
-	if (*ptr_str == '-' || *ptr_str == '+')
-		ptr_str++;
-	while (*ptr_str++)
-		if (*(ptr_str - 1) < '0' || *(ptr_str - 1) > '9')
-			return (0);
-	return (1);
+void	ft_unlock_both(t_main *config)
+{
+	pthread_mutex_unlock(&config->m_have_died);
+	if (config->have_max_eat)
+		pthread_mutex_unlock(&config->m_all_ate);
 }

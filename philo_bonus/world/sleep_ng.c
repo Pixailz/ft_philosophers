@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   sleep_ng.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 18:24:48 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 16:56:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/07 20:09:26 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/08 01:48:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_isnumeric(const char *str)
+void	sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait)
 {
-	char	*ptr_str;
+	t_stamp	current_ts;
+	t_main	*config;
 
-	ptr_str = (char *)str;
-	if (*ptr_str == '-' || *ptr_str == '+')
-		ptr_str++;
-	while (*ptr_str++)
-		if (*(ptr_str - 1) < '0' || *(ptr_str - 1) > '9')
-			return (0);
-	return (1);
+	config = philo->config;
+	ft_lock_both(config);
+	while (!config->all_ate && !config->have_died)
+	{
+		ft_unlock_both(config);
+		current_ts = ft_get_timestamp_ms();
+		if (current_ts - begin >= time_to_wait)
+		{
+			ft_lock_both(config);
+			break ;
+		}
+		usleep(SLEEP_TIME);
+		ft_lock_both(config);
+	}
+	ft_unlock_both(config);
 }
