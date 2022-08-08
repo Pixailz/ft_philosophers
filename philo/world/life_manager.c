@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 01:56:46 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:30:09 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ int	check_all_good(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->config->m_all_ate);
 		if (philo->config->all_ate)
+		{
+			pthread_mutex_unlock(&philo->config->m_all_ate);
 			return (0);
+		}
 		pthread_mutex_unlock(&philo->config->m_all_ate);
 	}
 	pthread_mutex_lock(&philo->config->m_have_died);
 	if (philo->config->have_died)
+	{
+		pthread_mutex_unlock(&philo->config->m_have_died);
 		return (0);
+	}
 	pthread_mutex_unlock(&philo->config->m_have_died);
 	return (1);
 }
@@ -45,13 +51,11 @@ void	cycle_of_life(t_philo *philo)
 		say(philo, "is thinking");
 		if (philo->config->have_max_eat)
 		{
-			pthread_mutex_lock(&philo->config->m_all_ate);
 			if (philo->have_max_eaten)
 			{
-				pthread_mutex_unlock(&philo->config->m_all_ate);
+				ft_lock_both(philo->config);
 				break ;
 			}
-			pthread_mutex_unlock(&philo->config->m_all_ate);
 		}
 		ft_lock_both(philo->config);
 	}
@@ -75,6 +79,7 @@ int	life_manager(t_main *config)
 	t_stamp	begin;
 
 	begin = ft_get_timestamp_ms();
+	counter = 0;
 	config->start_ts = begin;
 	while (counter < config->number_of_philosophers)
 	{
