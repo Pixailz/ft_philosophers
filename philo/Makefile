@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/08 00:36:00 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/10 09:19:14 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ TARGET			:= philo
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
-VERSION			:= 0.0.0
+VERSION			:= 3.0.5
 $(eval export MAIN=1)
 
 ifneq ($(DEBUG),1)
