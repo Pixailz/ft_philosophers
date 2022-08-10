@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 19:40:56 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 20:00:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 /* ########################################################################## */
 /* INCLUDE */
@@ -122,17 +122,15 @@ typedef struct s_philo
 /* ##### */
 
 // dataset/free.c
-void		destroy_mutex(t_main *config);
+void		destroy_semaphore(t_main *config);
 void		free_entry(t_main *config);
-void		free_forks(t_main *config);
 void		free_philos(t_main *config);
 
 // dataset/init.c
-void		init_config(t_main *config, char **argv);
+int			init_config(t_main *config, char **argv);
 int			init_entry(t_main *config, char **argv);
-int			init_forks(t_main *config);
-int			init_mutex(t_main *config);
 int			init_philos(t_main *config);
+int			init_semaphore(t_main *config);
 
 // dataset/parse.c
 int			parse(t_main *config, char **argv);
@@ -152,7 +150,6 @@ long int	ft_atol(const char *str);
 
 // utils/ft_error.c
 int			error_init(int return_code);
-int			error_init2(int return_code);
 int			error_life(int return_code);
 int			error_parse(int ret_code);
 int			ft_error(char *msg);
@@ -188,7 +185,7 @@ void		say(t_philo *philo, char *action);
 void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
 
 // world/solitary_life_manager.c
-void		*solo_life(void *void_philo);
+int			solo_life(t_philo *philo);
 int			solo_life_manager(t_main *config);
 
 // world/utils.c

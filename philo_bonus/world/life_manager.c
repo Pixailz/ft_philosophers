@@ -6,11 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 19:30:09 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	check_all_good(t_philo *philo)
 {
