@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 10:42:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 19:40:56 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ sem_wait()
 #  define DEBUG 1
 # endif
 
+# define VRAI 42
 # define CHECK_TIME 1000
 # define SLEEP_TIME 500
 
