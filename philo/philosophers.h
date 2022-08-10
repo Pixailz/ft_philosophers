@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 01:48:07 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 09:18:55 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,38 @@
 /* INCLUDE */
 /* ####### */
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
+/*
+INT_MAX
+INT_MIN
+*/
+# include <limits.h>
+/*
+pthread_t
+pthread_create()
+pthread_join()
+pthread_mutex_destroy()
+pthread_mutex_init()
+pthread_mutex_lock()
+pthread_mutex_unlock()
+*/
 # include <pthread.h>
+/*
+malloc()
+free()
+*/
+# include <stdlib.h>
+/*
+printf()
+*/
+# include <stdio.h>
+/*
+gettimeofday()
+*/
+# include <sys/time.h>
+/*
+usleep()
+*/
+# include <unistd.h>
 
 /* ########################################################################## */
 
@@ -33,8 +60,6 @@
 #  define DEBUG 1
 # endif
 
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
 # define CHECK_TIME 1000
 # define SLEEP_TIME 500
 
