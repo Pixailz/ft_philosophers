@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:44:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 01:07:42 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:15:55 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,21 @@ void	free_philos(t_main *config)
 	while (counter < config->number_of_philosophers)
 		free(config->philos[counter++]);
 	free(config->philos);
+	free(config->philo_pid_table);
 }
 
-void	free_forks(t_main *config)
+void	destroy_semaphore(t_main *config)
 {
-	int	counter;
-
-	counter = 0;
-	while (counter < config->number_of_philosophers)
-		free(config->forks[counter++]);
-	free(config->forks);
-}
-
-void	destroy_mutex(t_main *config)
-{
-	pthread_mutex_destroy(&config->m_speak);
-	pthread_mutex_destroy(&config->m_have_died);
-	pthread_mutex_destroy(&config->m_all_ate);
+	sem_close(config->s_forks);
+	sem_close(config->s_speak);
+	sem_close(config->s_begin);
+	sem_unlink(config->s_forks);
+	sem_unlink(config->s_speak);
+	sem_unlink(config->s_begin);
 }
 
 void	free_entry(t_main *config)
 {
 	free_philos(config);
-	free_forks(config);
 	destroy_mutex(config);
 }

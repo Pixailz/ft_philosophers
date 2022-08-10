@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 03:00:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:42:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,54 @@
 /* INCLUDE */
 /* ####### */
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <unistd.h>
+/*
+INT_MAX
+INT_MIN
+*/
+# include <limits.h>
+/*
+pthread_t
+pthread_create()
+pthread_join()
+*/
 # include <pthread.h>
-# include <semaphore.h>
-# include <signal.h>
+/*
+malloc()
+free()
+*/
+# include <stdlib.h>
+/*
+printf()
+*/
+# include <stdio.h>
+/*
+gettimeofday()
+*/
+# include <sys/time.h>
+/*
+usleep()
+*/
+# include <unistd.h>
+/*
+waitpid()
+*/
+# include <sys/wait.h>
+/*
+S_IRWXU
+*/
+# include <sys/stat.h>
+/*
+O_CREAT
+*/
 # include <fcntl.h>
+/*
+sem_open()
+sem_unlink()
+sem_close()
+sem_post()
+sem_wait()
+*/
+# include <semaphore.h>
 
 /* ########################################################################## */
 
@@ -38,8 +76,6 @@
 #  define DEBUG 1
 # endif
 
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
 # define CHECK_TIME 1000
 # define SLEEP_TIME 500
 
@@ -59,23 +95,23 @@ typedef struct s_main
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_eat;
-	int				have_died;
-	int				all_ate;
 	t_stamp			start_ts;
 	pthread_t		death;
 	pid_t			*philo_pid_table;
 	struct s_philo	**philos;
+	sem_t			*s_forks;
+	sem_t			*s_speak;
+	sem_t			*s_begin;
+
 }					t_main;
 
 typedef struct s_philo
 {
 	int			philo_id;
-	t_main		*config;
-	int			l_fork_id;
-	int			r_fork_id;
 	int			nb_eat;
-	int			have_max_eaten;
 	t_stamp		last_meal;
+	int			still_here;
+	t_main		*config;
 }				t_philo;
 
 /* ########################################################################## */
