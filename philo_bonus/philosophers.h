@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 01:48:07 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 03:00:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <semaphore.h>
+# include <signal.h>
+# include <fcntl.h>
 
 /* ########################################################################## */
 
@@ -58,19 +63,13 @@ typedef struct s_main
 	int				all_ate;
 	t_stamp			start_ts;
 	pthread_t		death;
+	pid_t			*philo_pid_table;
 	struct s_philo	**philos;
-	pthread_mutex_t	**forks;
-	pthread_mutex_t	m_speak;
-	pthread_mutex_t	m_have_died;
-	pthread_mutex_t	m_all_ate;
-	pthread_mutex_t	m_last_meal;
-	pthread_mutex_t	m_nb_eat;
 }					t_main;
 
 typedef struct s_philo
 {
 	int			philo_id;
-	pthread_t	thread_id;
 	t_main		*config;
 	int			l_fork_id;
 	int			r_fork_id;
