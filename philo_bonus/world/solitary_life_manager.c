@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:30:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 04:03:19 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	solo_life(t_philo *philo)
 {
 	sem_wait(philo->config->s_forks);
 	say(philo, "has taken a fork");
-	sleep_ng(philo, philo->last_meal, philo->config->time_to_die);
+	sleep_ng(philo->last_meal, philo->config->time_to_die);
 	say(philo, "has died");
 	sem_post(philo->config->s_forks);
 	return (1);

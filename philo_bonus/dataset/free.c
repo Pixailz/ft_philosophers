@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:44:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 03:38:01 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	destroy_semaphore(t_main *config)
 	sem_close(config->s_forks);
 	sem_close(config->s_speak);
 	sem_close(config->s_begin);
-	sem_unlink(config->s_forks);
-	sem_unlink(config->s_speak);
-	sem_unlink(config->s_begin);
+	sem_unlink("/s_forks");
+	sem_unlink("/s_speak");
+	sem_unlink("/s_begin");
 }
 
 void	free_entry(t_main *config)
 {
 	free_philos(config);
-	destroy_mutex(config);
+	destroy_semaphore(config);
 }

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 23:31:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 04:03:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,23 @@
 
 void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(philo->config->forks[philo->l_fork_id]);
-	if (DEBUG)
-		say(philo, "has taken lfork");
-	else
-		say(philo, "has taken a fork");
-	pthread_mutex_lock(philo->config->forks[philo->r_fork_id]);
-	if (DEBUG)
-		say(philo, "has taken rfork");
-	else
-		say(philo, "has taken a fork");
+	sem_wait(philo->config->s_forks);
+	say(philo, "has taken a fork");
+	sem_wait(philo->config->s_forks);
+	say(philo, "has taken a fork");
 }
 
 void	eat(t_philo *philo)
 {
 	take_forks(philo);
 	say(philo, "is eating");
-	pthread_mutex_lock(&philo->config->m_last_meal);
 	philo->last_meal = ft_get_timestamp_ms();
-	pthread_mutex_unlock(&philo->config->m_last_meal);
 	if (philo->config->have_max_eat)
-	{
-		pthread_mutex_lock(&philo->config->m_nb_eat);
 		philo->nb_eat++;
-		pthread_mutex_unlock(&philo->config->m_nb_eat);
-	}
-	sleep_ng(philo, philo->last_meal, philo->config->time_to_eat);
-	pthread_mutex_unlock(philo->config->forks[philo->l_fork_id]);
-	pthread_mutex_unlock(philo->config->forks[philo->r_fork_id]);
+	sleep_ng(philo->last_meal, philo->config->time_to_eat);
+	sem_post(philo->config->s_forks);
+	sem_post(philo->config->s_forks);
+	if (philo->config->have_max_eat)
+		if (philo->nb_eat == philo->config->max_eat)
+			exit(2);
 }

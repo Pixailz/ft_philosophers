@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 03:45:14 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	error_init(int return_code)
 		printf("init semaphore (s_speak)\n");
 	if (return_code == 6)
 		printf("init semaphore (s_begin)\n");
+	return (return_code);
 }
 
 int	error_life(int return_code)

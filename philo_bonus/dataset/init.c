@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:43:20 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 03:44:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	init_config(t_main *config, char **argv)
 												config->number_of_philosophers);
 	if (!config->philo_pid_table)
 		return (1);
+	return (0);
 }
 
 int	init_philos(t_main *config)
@@ -60,12 +61,13 @@ int	init_semaphore(t_main *config)
 												config->number_of_philosophers);
 	config->s_speak = sem_open("/s_speak", O_CREAT, S_IRWXU, 1);
 	config->s_begin = sem_open("/s_begin", O_CREAT, S_IRWXU, 0);
-	if (config->s_forks <= 0)
+	if (config->s_forks <= SEM_FAILED)
 		return (4);
-	if (config->s_speak <= 0)
+	if (config->s_speak <= SEM_FAILED)
 		return (5);
-	if (config->s_begin <= 0)
+	if (config->s_begin <= SEM_FAILED)
 		return (6);
+	return (0);
 }
 
 int	init_entry(t_main *config, char **argv)

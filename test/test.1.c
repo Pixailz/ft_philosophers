@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test.1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:45:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 03:24:48 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 03:36:33 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <sys/stat.h>
 #include <semaphore.h>
 #include <fcntl.h>
+#include <signal.h>
 
 #define TIME_TO_WAIT 200000
 #define CHECKTIME 500
@@ -75,17 +76,32 @@ int	child_function(int id)
 	exit(safe_exit(id));
 }
 
+void	kill_all(pid_t *pid_table, int nb_philo)
+{
+	int	counter;
+
+	counter = 0;
+	while (counter < nb_philo)
+	{
+		printf("kill_all() kill pid[%d]\n", pid_table[counter]);
+		kill(pid_table[counter], 9);
+		counter++;
+	}
+}
+
 void	main_function(pid_t *pid_table, int nb_philo)
 {
 	int	counter;
 	int	*status;
 	int	*dead_philo;
 	int	nb_dead_philo;
+	int	has_dead;
 
 	say("main function begin", 0);
 	dead_philo = malloc(sizeof(int) * nb_philo);
 	status = malloc(sizeof(int) * nb_philo);
 	counter = 0;
+	has_dead = 0;
 	while (counter < nb_philo)
 	{
 		dead_philo[counter] = 0;
@@ -98,7 +114,7 @@ void	main_function(pid_t *pid_table, int nb_philo)
 		sem_post(g_s_begin);
 		counter++;
 	}
-	while (1)
+	while (!has_dead)
 	{
 		counter = 0;
 		while (counter < nb_philo)
@@ -108,28 +124,20 @@ void	main_function(pid_t *pid_table, int nb_philo)
 				waitpid(pid_table[counter], &status[counter], WNOHANG);
 				if (WIFEXITED(status[counter]))
 				{
-					say("-> dead", counter + 1);
-					dead_philo[counter] = WEXITSTATUS(status[counter]);
+					say(" -> DEAD", counter + 1);
+					kill_all(pid_table, nb_philo);
+					has_dead = 1;
+					break ;
 				}
 			}
 			counter++;
 		}
-		counter = 0;
-		nb_dead_philo = 0;
-		while (counter < nb_philo)
-		{
-			if (dead_philo[counter])
-				nb_dead_philo++;
-			counter++;
-		}
-		if (nb_dead_philo == nb_philo)
-			break ;
 		usleep(CHECKTIME);
 	}
 	counter = 0;
 	while (counter < nb_philo)
 	{
-		printf("pid [%d] exited (%d)\n", pid_table[counter], status[counter] >> 8);
+		waitpid(pid_table[counter], NULL, 0);
 		counter++;
 	}
 	say("main function end", 0);

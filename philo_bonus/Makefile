@@ -41,13 +41,11 @@ SRC_C				:= dataset/free.c \
 					   utils/ft_get_timestamp_ms.c \
 					   utils/ft_isnum.c \
 					   utils/ft_strlen.c \
-					   world/death.c \
 					   world/eat.c \
 					   world/life_manager.c \
 					   world/say.c \
 					   world/sleep_ng.c \
-					   world/solitary_life_manager.c \
-					   world/utils.c
+					   world/solitary_life_manager.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)

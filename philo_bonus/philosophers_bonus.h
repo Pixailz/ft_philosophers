@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 20:00:35 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/11 04:03:38 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ sem_post()
 sem_wait()
 */
 # include <semaphore.h>
+/*
+kill()
+*/
+# include <signal.h>
 
 /* ########################################################################## */
 
@@ -163,34 +167,24 @@ int			ft_isnumeric(const char *str);
 // utils/ft_strlen.c
 int			ft_strlen(const char *str);
 
-// world/death.c
-void		check_all_ate(t_philo *philo, int *nb_eat);
-void		check_starving(t_philo *philo);
-void		*death(void *void_config);
-
 // world/eat.c
 void		eat(t_philo *philo);
 void		take_forks(t_philo *philo);
 
 // world/life_manager.c
-int			check_all_good(t_philo *philo);
 void		cycle_of_life(t_philo *philo);
-void		*life(void *void_philo);
+void		life(t_philo *philo);
 int			life_manager(t_main *config);
 
 // world/say.c
 void		say(t_philo *philo, char *action);
 
 // world/sleep_ng.c
-void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
+void		sleep_ng(t_stamp begin, t_stamp time_to_wait);
 
 // world/solitary_life_manager.c
 int			solo_life(t_philo *philo);
 int			solo_life_manager(t_main *config);
-
-// world/utils.c
-void		ft_lock_both(t_main *config);
-void		ft_unlock_both(t_main *config);
 
 /* ########################################################################## */
 
