@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:44:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 03:38:01 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:22:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_philos(t_main *config)
 		free(config->philos[counter++]);
 	free(config->philos);
 	free(config->philo_pid_table);
+	free(config->philo_status);
 }
 
 void	destroy_semaphore(t_main *config)

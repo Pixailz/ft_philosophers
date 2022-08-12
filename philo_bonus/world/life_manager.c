@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 04:03:11 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/12 03:11:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,20 @@ void	life(t_philo *philo)
 	cycle_of_life(philo);
 }
 
+int	god_manager(t_main *config)
+{
+	if (pthread_create(&config->god, NULL, god, config))
+		return (2);
+	if (pthread_join(config->god, NULL))
+		return (3);
+	return (0);
+}
+
 int	life_manager(t_main *config)
 {
 	int		counter;
 	t_stamp	begin;
+	int		return_code;
 
 	begin = ft_get_timestamp_ms();
 	counter = 0;
@@ -52,11 +62,6 @@ int	life_manager(t_main *config)
 		counter++;
 	}
 	if (counter == config->number_of_philosophers)
-	{
-		// if (pthread_create(&config->death, NULL, death, config))
-		// 	return (2);
-		// if (pthread_join(config->death, NULL))
-		// 	return (3);
-	}
-	return (0);
+		return_code = god_manager(config);
+	return (return_code);
 }

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 03:45:14 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/12 08:33:38 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@ int	error_init(int return_code)
 	if (return_code == 1)
 		printf("malloc (*philo_pid_table)\n");
 	if (return_code == 2)
-		printf("malloc (**philos)\n");
+		printf("malloc (*philo_status)\n");
 	if (return_code == 3)
-		printf("malloc (*philo)\n");
+		printf("malloc (**philos)\n");
 	if (return_code == 4)
-		printf("init semaphore (s_forks)\n");
+		printf("malloc (*philo)\n");
 	if (return_code == 5)
-		printf("init semaphore (s_speak)\n");
+		printf("init semaphore (s_forks)\n");
 	if (return_code == 6)
+		printf("init semaphore (s_speak)\n");
+	if (return_code == 7)
 		printf("init semaphore (s_begin)\n");
 	return (return_code);
 }

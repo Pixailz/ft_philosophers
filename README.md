@@ -10,3 +10,4 @@ https://cdn.intra.42.fr/pdf/pdf/52133/fr.subject.pdf
 	- check return code by all the philosophers
 2. sanitarize check before pushing
 3. ADD `_bonus.{c|h}` EVERYWHERE
+4. add philo_return_value

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 04:03:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:29:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,15 @@ typedef struct s_main
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_eat;
+	int				philo_has_died;
 	t_stamp			start_ts;
-	pthread_t		death;
+	pthread_t		god;
 	pid_t			*philo_pid_table;
+	int				*philo_status;
 	struct s_philo	**philos;
 	sem_t			*s_forks;
 	sem_t			*s_speak;
 	sem_t			*s_begin;
-
 }					t_main;
 
 typedef struct s_philo
@@ -115,8 +116,9 @@ typedef struct s_philo
 	int			philo_id;
 	int			nb_eat;
 	t_stamp		last_meal;
-	int			still_here;
 	t_main		*config;
+	int			have_died;
+	int			have_max_eaten;
 }				t_philo;
 
 /* ########################################################################## */
