@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/08 19:34:56 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/13 11:45:14 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,17 @@ TARGET			:= philo_bonus
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
-VERSION			:= 0.0.0
+VERSION			:= 3.1.5
 $(eval export MAIN=1)
 
-ifneq ($(DEBUG),1)
-CFLAGS			+= -Werror
+ifeq ($(DEBUG),1)
+CFLAGS			+= -g3
 else
-CFLAGS			+= -g3 -fsanitize=thread
+ifeq ($(DEBUG_THREAD),1)
+CFLAGS			+= -fsanitize=thread
+else
+CFLAGS			+= -Werror
+endif
 endif
 
 ifneq ($(PADDING),35)
@@ -41,7 +45,9 @@ SRC_C				:= dataset/free.c \
 					   utils/ft_get_timestamp_ms.c \
 					   utils/ft_isnum.c \
 					   utils/ft_strlen.c \
+					   world/death.c \
 					   world/eat.c \
+					   world/god.c \
 					   world/life_manager.c \
 					   world/say.c \
 					   world/sleep_ng.c \

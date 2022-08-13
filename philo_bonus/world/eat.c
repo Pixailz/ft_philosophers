@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 23:31:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/11 04:03:04 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:49:17 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	eat(t_philo *philo)
 	philo->last_meal = ft_get_timestamp_ms();
 	if (philo->config->have_max_eat)
 		philo->nb_eat++;
-	sleep_ng(philo->last_meal, philo->config->time_to_eat);
+	sleep_ng(philo, philo->last_meal, philo->config->time_to_eat);
 	sem_post(philo->config->s_forks);
 	sem_post(philo->config->s_forks);
 	if (philo->config->have_max_eat)

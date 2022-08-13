@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:43:20 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/12 13:29:33 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:38:38 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_config(t_main *config, char **argv)
 	config->time_to_die = ft_atol(argv[2]);
 	config->time_to_eat = ft_atol(argv[3]);
 	config->time_to_sleep = ft_atol(argv[4]);
-	config->philo_has_died = 0;
 	if (config->have_max_eat)
 		config->max_eat = ft_atol(argv[5]);
 	if (DEBUG)

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/12 13:29:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/13 11:41:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ kill()
 # endif
 
 # define VRAI 42
-# define CHECK_TIME 1000
+# define CHECK_TIME 500
 # define SLEEP_TIME 500
 
 /* ########################################################################## */
@@ -100,7 +100,6 @@ typedef struct s_main
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_eat;
-	int				philo_has_died;
 	t_stamp			start_ts;
 	pthread_t		god;
 	pid_t			*philo_pid_table;
@@ -119,6 +118,7 @@ typedef struct s_philo
 	t_main		*config;
 	int			have_died;
 	int			have_max_eaten;
+	pthread_t	death;
 }				t_philo;
 
 /* ########################################################################## */
@@ -169,12 +169,24 @@ int			ft_isnumeric(const char *str);
 // utils/ft_strlen.c
 int			ft_strlen(const char *str);
 
+// world/death.c
+int			check_starving(t_philo *philo);
+void		*death(void *void_philo);
+
 // world/eat.c
 void		eat(t_philo *philo);
 void		take_forks(t_philo *philo);
 
+// world/god.c
+int			check_all_ate(t_main *config, int philo_id);
+int			check_pid_status(t_main *config);
+void		*god(void *void_config);
+void		kill_all(t_main *config, int counter);
+void		start_life(t_main *config);
+
 // world/life_manager.c
 void		cycle_of_life(t_philo *philo);
+int			god_manager(t_main *config);
 void		life(t_philo *philo);
 int			life_manager(t_main *config);
 
@@ -182,10 +194,10 @@ int			life_manager(t_main *config);
 void		say(t_philo *philo, char *action);
 
 // world/sleep_ng.c
-void		sleep_ng(t_stamp begin, t_stamp time_to_wait);
+void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
 
 // world/solitary_life_manager.c
-int			solo_life(t_philo *philo);
+void		solo_life(t_philo *philo);
 int			solo_life_manager(t_main *config);
 
 /* ########################################################################## */

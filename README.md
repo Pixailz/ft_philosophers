@@ -5,9 +5,7 @@ https://cdn.intra.42.fr/pdf/pdf/52133/fr.subject.pdf
 
 ### philo_bonus
 1. rewrite
-	- add waitpid to check if all philo are working greate
-	- add semphore at begining to ensure that all philosophers begin at the same time
-	- check return code by all the philosophers
+	- check memory leaks
+	- correct 4 210 100 100 1 not working
 2. sanitarize check before pushing
 3. ADD `_bonus.{c|h}` EVERYWHERE
-4. add philo_return_value
