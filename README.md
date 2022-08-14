@@ -1,11 +1,6 @@
 # Philosophers
 https://cdn.intra.42.fr/pdf/pdf/52133/fr.subject.pdf
 
-## TODO
+# TODO
 
-### philo_bonus
-1. rewrite
-	- check memory leaks
-	- correct 4 210 100 100 1 not working
-2. sanitarize check before pushing
-3. ADD `_bonus.{c|h}` EVERYWHERE
+last check before pushing
