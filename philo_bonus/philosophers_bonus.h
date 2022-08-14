@@ -130,78 +130,78 @@ typedef struct s_philo
 /* FILES */
 /* ##### */
 
-// dataset/free.c
+// dataset/free_bonus.c
 void		destroy_semaphore(t_main *config);
 void		free_entry(t_main *config);
 void		free_philos(t_main *config);
 void		unlink_semaphore(void);
 
-// dataset/init.c
+// dataset/init_bonus.c
 int			check_semaphore_failed(t_main *config);
 int			init_config(t_main *config, char **argv);
 int			init_entry(t_main *config, char **argv);
 int			init_philos(t_main *config);
 int			init_semaphore(t_main *config);
 
-// dataset/parse.c
+// dataset/parse_bonus.c
 int			parse(t_main *config, char **argv);
 int			parse_is_empty(t_main *config, char **argv);
 int			parse_is_good_number(t_main *config, char **argv);
 int			parse_is_numeric(t_main *config, char **argv);
 
-// debug/debug.c
+// debug/debug_bonus.c
 void		debug_print_elapsed(t_stamp current_ts);
 void		debug_print_initial_config(t_main *config);
 
-// philosophers.c
+// philosophers_bonus.c
 int			main(int argc, char **argv);
 
-// utils/ft_atol.c
+// utils/ft_atol_bonus.c
 long int	ft_atol(const char *str);
 
-// utils/ft_error.c
+// utils/ft_error_bonus.c
 int			error_init(int return_code);
 int			error_life(int return_code);
 int			error_parse(int ret_code);
 int			ft_error(char *msg);
 
-// utils/ft_get_timestamp_ms.c
+// utils/ft_get_timestamp_ms_bonus.c
 t_stamp		ft_get_timestamp_ms(void);
 
-// utils/ft_isnum.c
+// utils/ft_isnum_bonus.c
 int			ft_isnumeric(const char *str);
 
-// utils/ft_strlen.c
+// utils/ft_strlen_bonus.c
 int			ft_strlen(const char *str);
 
-// world/death.c
+// world/death_bonus.c
 int			check_starving(t_philo *philo);
 void		*death(void *void_philo);
 
-// world/eat.c
+// world/eat_bonus.c
 void		eat(t_philo *philo);
 void		take_forks(t_philo *philo);
 
-// world/god.c
+// world/god_bonus.c
 int			check_all_ate(t_main *config, int philo_id);
 int			check_pid_status(t_main *config);
 void		*god(void *void_config);
 void		kill_all(t_main *config, int philo_id);
 void		start_life(t_main *config);
 
-// world/life_manager.c
+// world/life_manager_bonus.c
 void		cycle_of_life(t_philo *philo);
 int			god_manager(t_main *config);
 void		life(t_philo *philo);
 int			life_manager(t_main *config);
 
-// world/say.c
+// world/say_bonus.c
 void		say(t_philo *philo, char *action);
 
-// world/sleep_ng.c
+// world/sleep_ng_bonus.c
 void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
 
-// world/solitary_life_manager.c
+// world/solitary_life_manager_bonus.c
 void		solo_life(t_philo *philo);
 int			solo_life_manager(t_main *config);
 

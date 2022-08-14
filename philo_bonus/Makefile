@@ -38,23 +38,23 @@ PADDING			:= 35
 endif
 
 # SRC
-SRC_C				:= dataset/free.c \
-					   dataset/init.c \
-					   dataset/parse.c \
-					   debug/debug.c \
-					   philosophers.c \
-					   utils/ft_atol.c \
-					   utils/ft_error.c \
-					   utils/ft_get_timestamp_ms.c \
-					   utils/ft_isnum.c \
-					   utils/ft_strlen.c \
-					   world/death.c \
-					   world/eat.c \
-					   world/god.c \
-					   world/life_manager.c \
-					   world/say.c \
-					   world/sleep_ng.c \
-					   world/solitary_life_manager.c
+SRC_C				:= dataset/free_bonus.c \
+					   dataset/init_bonus.c \
+					   dataset/parse_bonus.c \
+					   debug/debug_bonus.c \
+					   philosophers_bonus.c \
+					   utils/ft_atol_bonus.c \
+					   utils/ft_error_bonus.c \
+					   utils/ft_get_timestamp_ms_bonus.c \
+					   utils/ft_isnum_bonus.c \
+					   utils/ft_strlen_bonus.c \
+					   world/death_bonus.c \
+					   world/eat_bonus.c \
+					   world/god_bonus.c \
+					   world/life_manager_bonus.c \
+					   world/say_bonus.c \
+					   world/sleep_ng_bonus.c \
+					   world/solitary_life_manager_bonus.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)
