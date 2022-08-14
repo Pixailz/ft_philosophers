@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/14 03:02:03 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/14 13:31:44 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ CFLAGS			+= -Werror
 endif
 endif
 
-ifneq ($(PADDING),35)
-PADDING			:= 35
+ifneq ($(PADDING),40)
+PADDING			:= 40
 endif
 
 # SRC
