@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 11:41:23 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 02:22:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ typedef struct s_main
 	sem_t			*s_forks;
 	sem_t			*s_speak;
 	sem_t			*s_begin;
+	sem_t			*s_last_meal;
+	sem_t			*s_nb_eat;
+	sem_t			*s_take_fork;
+	sem_t			*s_have_died;
 }					t_main;
 
 typedef struct s_philo
@@ -131,8 +135,10 @@ typedef struct s_philo
 void		destroy_semaphore(t_main *config);
 void		free_entry(t_main *config);
 void		free_philos(t_main *config);
+void		unlink_semaphore(void);
 
 // dataset/init.c
+int			check_semaphore_failed(t_main *config);
 int			init_config(t_main *config, char **argv);
 int			init_entry(t_main *config, char **argv);
 int			init_philos(t_main *config);
@@ -181,7 +187,7 @@ void		take_forks(t_philo *philo);
 int			check_all_ate(t_main *config, int philo_id);
 int			check_pid_status(t_main *config);
 void		*god(void *void_config);
-void		kill_all(t_main *config, int counter);
+void		kill_all(t_main *config, int philo_id);
 void		start_life(t_main *config);
 
 // world/life_manager.c
