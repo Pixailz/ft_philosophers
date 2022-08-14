@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 03:12:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 03:06:32 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 03:29:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*death(void *void_philo)
 			}
 			sem_post(philo->config->s_nb_eat);
 		}
-		usleep(CHECK_TIME);
+		usleep(SLEEP_TIME);
 	}
 	return (void_philo);
 }
