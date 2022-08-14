@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   sleep_ng.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:21:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 02:53:13 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/07 20:09:26 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/08 01:48:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long int	ft_atol(const char *str)
+void	sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait)
 {
-	char		*ptr_str;
-	long int	to_dec;
-	int			is_neg;
+	t_stamp	current_ts;
+	t_main	*config;
 
-	is_neg = 1;
-	to_dec = 0;
-	ptr_str = (char *)str;
-	if (*ptr_str == '-' || *ptr_str == '+')
-		if (*ptr_str++ == '-')
-			is_neg = ~(is_neg - 1);
-	while (*ptr_str++)
-		to_dec = (to_dec * 10) + (*(ptr_str - 1) - '0');
-	return (to_dec * is_neg);
+	config = philo->config;
+	ft_lock_both(config);
+	while (!config->all_ate && !config->have_died)
+	{
+		ft_unlock_both(config);
+		current_ts = ft_get_timestamp_ms();
+		if (current_ts - begin >= time_to_wait)
+		{
+			ft_lock_both(config);
+			break ;
+		}
+		usleep(SLEEP_TIME);
+		ft_lock_both(config);
+	}
+	ft_unlock_both(config);
 }

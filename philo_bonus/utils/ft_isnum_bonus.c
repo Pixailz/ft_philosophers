@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:21:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 02:53:13 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/02 18:24:48 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-long int	ft_atol(const char *str)
+int	ft_isnumeric(const char *str)
 {
-	char		*ptr_str;
-	long int	to_dec;
-	int			is_neg;
+	char	*ptr_str;
 
-	is_neg = 1;
-	to_dec = 0;
 	ptr_str = (char *)str;
 	if (*ptr_str == '-' || *ptr_str == '+')
-		if (*ptr_str++ == '-')
-			is_neg = ~(is_neg - 1);
+		ptr_str++;
 	while (*ptr_str++)
-		to_dec = (to_dec * 10) + (*(ptr_str - 1) - '0');
-	return (to_dec * is_neg);
+		if (*(ptr_str - 1) < '0' || *(ptr_str - 1) > '9')
+			return (0);
+	return (1);
 }

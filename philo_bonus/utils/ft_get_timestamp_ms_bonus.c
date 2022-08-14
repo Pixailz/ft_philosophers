@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_get_timestamp_ms.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:21:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 02:53:13 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/04 20:00:33 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-long int	ft_atol(const char *str)
+t_stamp	ft_get_timestamp_ms(void)
 {
-	char		*ptr_str;
-	long int	to_dec;
-	int			is_neg;
+	struct timeval	timestamp;
 
-	is_neg = 1;
-	to_dec = 0;
-	ptr_str = (char *)str;
-	if (*ptr_str == '-' || *ptr_str == '+')
-		if (*ptr_str++ == '-')
-			is_neg = ~(is_neg - 1);
-	while (*ptr_str++)
-		to_dec = (to_dec * 10) + (*(ptr_str - 1) - '0');
-	return (to_dec * is_neg);
+	gettimeofday(&timestamp, NULL);
+	return (timestamp.tv_sec * 1000 + (timestamp.tv_usec / 1000));
 }

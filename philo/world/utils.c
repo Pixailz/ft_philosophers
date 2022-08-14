@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:21:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 02:53:13 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/08 01:19:51 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/08 19:19:05 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long int	ft_atol(const char *str)
+void	ft_lock_both(t_main *config)
 {
-	char		*ptr_str;
-	long int	to_dec;
-	int			is_neg;
+	pthread_mutex_lock(&config->m_have_died);
+	if (config->have_max_eat)
+		pthread_mutex_lock(&config->m_all_ate);
+}
 
-	is_neg = 1;
-	to_dec = 0;
-	ptr_str = (char *)str;
-	if (*ptr_str == '-' || *ptr_str == '+')
-		if (*ptr_str++ == '-')
-			is_neg = ~(is_neg - 1);
-	while (*ptr_str++)
-		to_dec = (to_dec * 10) + (*(ptr_str - 1) - '0');
-	return (to_dec * is_neg);
+void	ft_unlock_both(t_main *config)
+{
+	pthread_mutex_unlock(&config->m_have_died);
+	if (config->have_max_eat)
+		pthread_mutex_unlock(&config->m_all_ate);
 }

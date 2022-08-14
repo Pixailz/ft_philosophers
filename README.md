@@ -1,11 +1,11 @@
 # Philosophers
 https://cdn.intra.42.fr/pdf/pdf/52133/fr.subject.pdf
 
-## TODO
+# TODO
 
-### philo
-1. fix 4 200 100 100 philo died, should not
+1. make backpup
+	- branch this version before removing all malloc
 
-### philo_bonu
-1. sanitarize check before pushing
-2. rewrite
+# philo_bonus
+
+1. remove all malloc ...

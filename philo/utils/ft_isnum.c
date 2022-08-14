@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 17:34:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/06/19 17:37:02 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/08/02 18:24:48 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/08/07 16:56:57 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_isnum(const char *ptr)
+int	ft_isnumeric(const char *str)
 {
-	char	*tmp;
+	char	*ptr_str;
 
-	tmp = (char *)ptr;
-	if (*tmp == '-' || *tmp == '+')
-		tmp++;
-	while (*tmp)
-		if (*tmp < '0' || *tmp++ > '9')
+	ptr_str = (char *)str;
+	if (*ptr_str == '-' || *ptr_str == '+')
+		ptr_str++;
+	while (*ptr_str++)
+		if (*(ptr_str - 1) < '0' || *(ptr_str - 1) > '9')
 			return (0);
 	return (1);
 }

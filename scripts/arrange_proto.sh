@@ -2,10 +2,10 @@
 
 if [ "$1" == "1" ]; then
 	SRC_DIR="philo"
-	INC_FILE="includes/philosophers.h"
+	INC_FILE="philo/philosophers.h"
 elif [ "$1" == "2" ]; then
 	SRC_DIR="philo_bonus"
-	INC_FILE="includes/philosophers_bonus.h"
+	INC_FILE="philo_bonus/philosophers_bonus.h"
 else
 	printf "wrong arg (1|2)\n"
 	exit

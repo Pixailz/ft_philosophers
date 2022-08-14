@@ -6,11 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:21:49 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 02:53:13 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/10 20:01:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 long int	ft_atol(const char *str)
 {

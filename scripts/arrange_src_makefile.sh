@@ -1,13 +1,13 @@
 #!/bin/bash
 
-MAKEFILE_PATH="Makefile"
+VARIABLE_SRC="SRC_C"
 
 if [ "$1" == "1" ]; then
 	SRC_DIR="philo"
-	VARIABLE_SRC="SRC_C"
+	MAKEFILE_PATH="philo/Makefile"
 elif [ "$1" == "2" ]; then
 	SRC_DIR="philo_bonus"
-	VARIABLE_SRC="SRC_TMP"
+	MAKEFILE_PATH="philo_bonus/Makefile"
 else
 	printf "wrong arg (1|2)\n"
 	exit
