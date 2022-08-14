@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 12:48:32 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 02:22:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	cycle_of_life(t_philo *philo)
 {
 	sem_wait(philo->config->s_begin);
+	sem_wait(philo->config->s_have_died);
 	while (!philo->have_died && !philo->have_max_eaten)
 	{
+		sem_post(philo->config->s_have_died);
 		eat(philo);
 		say(philo, "is sleeping");
 		sleep_ng(philo, ft_get_timestamp_ms(), philo->config->time_to_sleep);
 		say(philo, "is thinking");
+		sem_wait(philo->config->s_have_died);
 	}
+	sem_post(philo->config->s_have_died);
 	if (philo->have_max_eaten)
 		exit(2);
 	if (philo->have_died)

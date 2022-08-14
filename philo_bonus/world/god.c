@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 03:13:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 12:48:03 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 02:22:01 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	check_pid_status(t_main *config)
 									&config->philo_status[counter], WNOHANG);
 			if (WIFEXITED(config->philo_status[counter]))
 			{
-				printf("WIFEXITED %d\n", WIFEXITED(config->philo_status[counter]));
 				if (config->philo_status[counter] >> 8 == 1)
 				{
 					kill_all(config, counter);

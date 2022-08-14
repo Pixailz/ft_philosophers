@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:43:20 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 12:38:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 02:22:49 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,38 @@ int	init_philos(t_main *config)
 	return (0);
 }
 
-int	init_semaphore(t_main *config)
+int	check_semaphore_failed(t_main *config)
 {
-	sem_unlink("/s_forks");
-	sem_unlink("/s_speak");
-	sem_unlink("/s_begin");
-	config->s_forks = sem_open("/s_forks", O_CREAT, S_IRWXU, \
-												config->number_of_philosophers);
-	config->s_speak = sem_open("/s_speak", O_CREAT, S_IRWXU, 1);
-	config->s_begin = sem_open("/s_begin", O_CREAT, S_IRWXU, 0);
 	if (config->s_forks <= SEM_FAILED)
 		return (5);
 	if (config->s_speak <= SEM_FAILED)
 		return (6);
 	if (config->s_begin <= SEM_FAILED)
 		return (7);
+	if (config->s_last_meal <= SEM_FAILED)
+		return (8);
+	if (config->s_nb_eat <= SEM_FAILED)
+		return (9);
+	if (config->s_take_fork <= SEM_FAILED)
+		return (10);
+	if (config->s_have_died <= SEM_FAILED)
+		return (11);
 	return (0);
+}
+
+int	init_semaphore(t_main *config)
+{
+	unlink_semaphore();
+	config->s_forks = sem_open("/s_forks", O_CREAT, S_IRWXU, \
+												config->number_of_philosophers);
+	config->s_speak = sem_open("/s_speak", O_CREAT, S_IRWXU, 1);
+	config->s_begin = sem_open("/s_begin", O_CREAT, S_IRWXU, 0);
+	config->s_last_meal = sem_open("/s_last_meal", O_CREAT, S_IRWXU, 1);
+	config->s_nb_eat = sem_open("/s_nb_eat", O_CREAT, S_IRWXU, 1);
+	config->s_take_fork = sem_open("/s_take_fork", O_CREAT, S_IRWXU, \
+											config->number_of_philosophers / 2);
+	config->s_have_died = sem_open("/s_have_died", O_CREAT, S_IRWXU, 1);
+	return (check_semaphore_failed(config));
 }
 
 int	init_entry(t_main *config, char **argv)
