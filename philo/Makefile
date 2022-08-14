@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/10 09:19:14 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/14 02:58:06 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,17 @@ MAKE			:= make -C
 VERSION			:= 3.0.5
 $(eval export MAIN=1)
 
+ifeq ($(DEBUG),1)
+CFLAGS			+= -g3
+endif
+ifeq ($(DEBUG_THREAD),1)
+CFLAGS			+= -fsanitize=thread
+endif
+
 ifneq ($(DEBUG),1)
+ifneq ($(DEBUG_THREAD), 1)
 CFLAGS			+= -Werror
-else
-CFLAGS			+= -g3 -fsanitize=thread
+endif
 endif
 
 ifneq ($(PADDING),35)

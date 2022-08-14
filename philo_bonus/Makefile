@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/13 11:45:14 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/14 03:02:03 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,13 @@ $(eval export MAIN=1)
 
 ifeq ($(DEBUG),1)
 CFLAGS			+= -g3
-else
+endif
 ifeq ($(DEBUG_THREAD),1)
 CFLAGS			+= -fsanitize=thread
-else
+endif
+
+ifneq ($(DEBUG),1)
+ifneq ($(DEBUG_THREAD), 1)
 CFLAGS			+= -Werror
 endif
 endif
