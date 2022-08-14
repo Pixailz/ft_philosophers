@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/10 09:18:55 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 03:14:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ usleep()
 /* ###### */
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 # define CHECK_TIME 1000

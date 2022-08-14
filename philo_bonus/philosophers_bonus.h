@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 02:22:04 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 03:14:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ kill()
 /* ###### */
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 # define VRAI 42
