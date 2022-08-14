@@ -9,4 +9,3 @@ https://cdn.intra.42.fr/pdf/pdf/52133/fr.subject.pdf
 	- correct 4 210 100 100 1 not working
 2. sanitarize check before pushing
 3. ADD `_bonus.{c|h}` EVERYWHERE
-4. sanitarize ft_error.c, according to new semophore etc...

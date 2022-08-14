@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:14:39 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/12 08:33:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 03:12:00 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ int	error_init(int return_code)
 		printf("init semaphore (s_speak)\n");
 	if (return_code == 7)
 		printf("init semaphore (s_begin)\n");
+	if (return_code == 8)
+		printf("init semaphore (s_last_meal)\n");
+	if (return_code == 9)
+		printf("init semaphore (s_nb_eat)\n");
+	if (return_code == 10)
+		printf("init semaphore (s_take_fork)\n");
+	if (return_code == 11)
+		printf("init semaphore (s_have_died)\n");
 	return (return_code);
 }
 
