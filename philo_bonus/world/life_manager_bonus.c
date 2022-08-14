@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   life_manager.c                                     :+:      :+:    :+:   */
+/*   life_manager_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 02:22:18 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:25:02 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	life(t_philo *philo)
 {
 	if (philo->philo_id % 2)
 		usleep(500);
-	if (pthread_create(&philo->death, NULL, death, philo))
-		exit(4);
+	// if (pthread_create(&philo->death, NULL, death, philo))
+	// 	exit(4);
 	cycle_of_life(philo);
-	if (pthread_join(philo->death, NULL))
-		exit(5);
+	// if (pthread_join(philo->death, NULL))
+	// 	exit(5);
 }
 
 int	god_manager(t_main *config)

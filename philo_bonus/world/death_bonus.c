@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   death.c                                            :+:      :+:    :+:   */
+/*   death_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 03:12:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 03:29:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:35:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ int	check_starving(t_philo *philo)
 	sem_wait(philo->config->s_last_meal);
 	current_ts = ft_get_timestamp_ms() - philo->last_meal;
 	sem_post(philo->config->s_last_meal);
+	sem_wait(philo->config->s_speak);
 	if (current_ts > philo->config->time_to_die)
 	{
+		sem_post(philo->config->s_speak);
 		sem_wait(philo->config->s_have_died);
 		philo->have_died = 1;
 		sem_post(philo->config->s_have_died);
 		return (1);
 	}
+	sem_post(philo->config->s_speak);
 	return (0);
 }
 

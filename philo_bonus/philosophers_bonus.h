@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 03:38:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/14 17:30:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void		take_forks(t_philo *philo);
 int			check_all_ate(t_main *config, int philo_id);
 int			check_pid_status(t_main *config);
 void		*god(void *void_config);
-void		kill_all(t_main *config, int philo_id);
+void		kill_all(t_main *config);
 void		start_life(t_main *config);
 
 // world/life_manager_bonus.c
@@ -196,7 +196,9 @@ void		life(t_philo *philo);
 int			life_manager(t_main *config);
 
 // world/say_bonus.c
+void		death_check(t_philo *philo);
 void		say(t_philo *philo, char *action);
+void		say_dead(t_philo *philo);
 
 // world/sleep_ng_bonus.c
 void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
