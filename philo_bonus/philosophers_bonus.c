@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   philosophers_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:13:03 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 11:50:10 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:15:02 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 	int		return_code;
 
 	if (argc < 5)
-		return (printf("Error: Not enought args\n"));
+		return (ft_putstr_strderr("Error: Not enought args\n"));
 	if (argc > 6)
-		return (printf("Error: Too many args\n"));
+		return (ft_putstr_strderr("Error: Too many args\n"));
 	config.have_max_eat = argc == 6;
 	return_code = parse(&config, argv);
 	if (return_code)

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:11:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 03:38:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:15:30 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ typedef struct s_philo
 	t_main		*config;
 	int			have_died;
 	int			have_max_eaten;
-	pthread_t	death;
 }				t_philo;
 
 /* ########################################################################## */
@@ -163,7 +162,7 @@ long int	ft_atol(const char *str);
 int			error_init(int return_code);
 int			error_life(int return_code);
 int			error_parse(int ret_code);
-int			ft_error(char *msg);
+int			ft_putstr_strderr(const char *msg);
 
 // utils/ft_get_timestamp_ms_bonus.c
 t_stamp		ft_get_timestamp_ms(void);
@@ -174,10 +173,6 @@ int			ft_isnumeric(const char *str);
 // utils/ft_strlen_bonus.c
 int			ft_strlen(const char *str);
 
-// world/death_bonus.c
-int			check_starving(t_philo *philo);
-void		*death(void *void_philo);
-
 // world/eat_bonus.c
 void		eat(t_philo *philo);
 void		take_forks(t_philo *philo);
@@ -186,7 +181,7 @@ void		take_forks(t_philo *philo);
 int			check_all_ate(t_main *config, int philo_id);
 int			check_pid_status(t_main *config);
 void		*god(void *void_config);
-void		kill_all(t_main *config, int philo_id);
+void		kill_all(t_main *config);
 void		start_life(t_main *config);
 
 // world/life_manager_bonus.c
@@ -194,6 +189,7 @@ void		cycle_of_life(t_philo *philo);
 int			god_manager(t_main *config);
 void		life(t_philo *philo);
 int			life_manager(t_main *config);
+void		wait_for_all(t_main *config);
 
 // world/say_bonus.c
 void		say(t_philo *philo, char *action);
@@ -204,6 +200,11 @@ void		sleep_ng(t_philo *philo, t_stamp begin, t_stamp time_to_wait);
 // world/solitary_life_manager_bonus.c
 void		solo_life(t_philo *philo);
 int			solo_life_manager(t_main *config);
+
+// world/utils.c
+void		check_all_good(t_philo *philo);
+void		death_check(t_philo *philo);
+void		say_dead(t_philo *philo);
 
 /* ########################################################################## */
 

@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/14 13:31:44 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/18 22:14:53 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,13 +48,13 @@ SRC_C				:= dataset/free_bonus.c \
 					   utils/ft_get_timestamp_ms_bonus.c \
 					   utils/ft_isnum_bonus.c \
 					   utils/ft_strlen_bonus.c \
-					   world/death_bonus.c \
 					   world/eat_bonus.c \
 					   world/god_bonus.c \
 					   world/life_manager_bonus.c \
 					   world/say_bonus.c \
 					   world/sleep_ng_bonus.c \
-					   world/solitary_life_manager_bonus.c
+					   world/solitary_life_manager_bonus.c \
+					   world/utils.c
 
 # OBJ
 OBJ_C			:= $(SRC_C:%.c=%.o)

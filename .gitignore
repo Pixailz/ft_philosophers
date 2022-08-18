@@ -1,0 +1,13 @@
+# object
+**/*.o
+
+# executable
+philo/philo
+philo_bonus/philo_bonus
+**/a.out
+
+# vscode config
+.vscode
+
+# when sigflt/crash
+vgcore.*

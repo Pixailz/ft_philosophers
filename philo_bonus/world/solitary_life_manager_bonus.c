@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solitary_life_manager.c                            :+:      :+:    :+:   */
+/*   solitary_life_manager_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:30:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/13 10:43:49 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:16:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	solo_life(t_philo *philo)
 	sem_wait(philo->config->s_forks);
 	say(philo, "has taken a fork");
 	sleep_ng(philo, philo->last_meal, philo->config->time_to_die);
-	say(philo, "has died");
+	say(philo, "died");
 	sem_post(philo->config->s_forks);
 }
 

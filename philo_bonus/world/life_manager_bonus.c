@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:02:53 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 13:36:11 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:16:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,26 @@ void	cycle_of_life(t_philo *philo)
 	{
 		sem_post(philo->config->s_have_died);
 		eat(philo);
+		check_all_good(philo);
 		say(philo, "is sleeping");
 		sleep_ng(philo, ft_get_timestamp_ms(), philo->config->time_to_sleep);
+		check_all_good(philo);
 		say(philo, "is thinking");
 		sem_wait(philo->config->s_have_died);
 	}
 	sem_post(philo->config->s_have_died);
-	if (philo->have_max_eaten)
-		exit(2);
 	if (philo->have_died)
+	{
+		free_entry(philo->config);
 		exit(1);
+	}
 }
 
 void	life(t_philo *philo)
 {
 	if (philo->philo_id % 2)
 		usleep(500);
-	if (pthread_create(&philo->death, NULL, death, philo))
-		exit(4);
 	cycle_of_life(philo);
-	if (pthread_join(philo->death, NULL))
-		exit(5);
 }
 
 int	god_manager(t_main *config)
@@ -50,6 +49,15 @@ int	god_manager(t_main *config)
 	if (pthread_join(config->god, NULL))
 		return (3);
 	return (0);
+}
+
+void	wait_for_all(t_main *config)
+{
+	int	counter;
+
+	counter = 0;
+	while (counter < config->number_of_philosophers)
+		waitpid(config->philo_pid_table[counter++], NULL, 0);
 }
 
 int	life_manager(t_main *config)
@@ -71,7 +79,10 @@ int	life_manager(t_main *config)
 			break ;
 	}
 	if (counter == config->number_of_philosophers)
+	{
 		return_code = god_manager(config);
+		wait_for_all(config);
+	}
 	else
 		life(config->philos[counter]);
 	return (return_code);
