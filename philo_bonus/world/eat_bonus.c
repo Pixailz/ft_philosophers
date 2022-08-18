@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   eat_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 23:31:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/14 01:08:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/17 21:29:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,4 @@ void	eat(t_philo *philo)
 	}
 	sem_post(philo->config->s_forks);
 	sem_post(philo->config->s_forks);
-	if (philo->config->have_max_eat)
-		if (philo->nb_eat == philo->config->max_eat)
-			exit(2);
 }
