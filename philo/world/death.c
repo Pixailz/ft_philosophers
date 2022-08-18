@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 00:04:37 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/08 01:52:14 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/17 00:18:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_starving(t_philo *philo)
 	pthread_mutex_unlock(&philo->config->m_last_meal);
 	if (current_ts >= philo->config->time_to_die)
 	{
-		say(philo, "has died");
+		say(philo, "died");
 		pthread_mutex_lock(&philo->config->m_have_died);
 		philo->config->have_died = 1;
 		pthread_mutex_unlock(&philo->config->m_have_died);

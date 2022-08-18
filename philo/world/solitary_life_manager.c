@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:30:43 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/07 20:29:18 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/17 00:18:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*solo_life(void *void_philo)
 	else
 		say(philo, "has taken a fork");
 	sleep_ng(philo, philo->last_meal, philo->config->time_to_die);
-	say(philo, "has died");
+	say(philo, "died");
 	pthread_mutex_unlock(philo->config->forks[philo->l_fork_id]);
 	return ((void *) void_philo);
 }
